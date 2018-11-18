@@ -1,0 +1,72 @@
+
+
+html, body {
+  height: 100%;
+  margin: 0px;
+}
+* {
+  box-sizing: border-box;
+}
+div {
+  font-size: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+div * {
+ 
+  font-size: 16px;
+}
+#s1 {
+  display: inline-block;
+  width: 16%;
+  height: 100%;
+  
+  overflow: auto;
+  background-color: rgb(234, 238, 243);
+}
+
+#s2 {
+  display: inline-block;
+  width: 52%;
+  height: 100%;
+
+  /* overflow: auto; */
+  /* vertical-align: top; */
+  /* border: 1px inset rgb(201, 201, 201); */
+}
+
+#a1 {
+  height: 120px;
+  border-left: 1px solid rgb(201, 201, 201);
+
+  /* vertical-align: top; */
+  overflow: auto;
+}
+
+#a2 {
+  height: calc(100% - 120px);
+  border: 1px inset rgb(201, 201, 201);
+
+  overflow: auto; 
+}
+
+#s3 {
+  display: inline-block;
+  width: 16%;
+  height: 100%;
+
+  background-color: rgb(234, 238, 243);
+
+  border: 1px outset rgb(201, 201, 201);
+
+  overflow-y: auto;
+}
+
+#s4 {
+  display: inline-block;
+  width: 16%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgb(234, 238, 243);
+}
