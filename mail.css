@@ -17,7 +17,7 @@ header {
   height: 65px;
   width: 100%;
   overflow: auto;
-  border-bottom: 3px solid rgb(137, 181, 233);
+  border-bottom: 5px solid rgb(137, 181, 233);
 
 }
 
@@ -34,7 +34,9 @@ li:first-child {
   height: 100%;
   width: 174px;
 
-  border-right: 3px solid rgb(137, 181, 233);
+  border-right: 5px solid rgb(137, 181, 233);
+
+  background-color:rgb(224, 246, 239);
 
 
   overflow: auto;
@@ -48,9 +50,11 @@ li:last-child {
   padding: 0px;
 
   display: inline-block;
-  width: calc(100% - 184px);
+  width: calc(100% - 174px);
 
   vertical-align: top;
 
   overflow: auto;
+
+  background-color: silver;
 }
