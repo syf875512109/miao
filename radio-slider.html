@@ -1,106 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>radio-slider</title>
-  <style>
-    body {
-      margin: 0px;
-    }
-    div {
-      position: relative;
-      width: 1000px;
-
-      margin-left: auto;
-      margin-right: auto;
-
-    }
-    img {
-      width: 100%;
-      position: absolute;
-     
-      left: 0px;
-      top: 20px;
-      opacity: 0;
-      
-      cursor: pointer;
-      
-      transition: 1s ease;
-
-      z-index: -1;
-    }
-
-    input {
-      /*position: absolute;*/
-      /*z-index: 3;*/
-      
-      cursor: pointer;
-    }
-
-    input:first-child {
-      margin-left: calc(100% - 150px);
-      margin-top: 360px;
-    }
-
-    /*#p1 {
-      top: 110px;
-      right: 100px;
-    }
-
-    #p2 {
-      top: 110px;
-      right: 80px;
-    }
-
-    #p3 {
-      top: 110px;
-      right: 60px;
-    }
-
-    #p4 {
-      top: 110px;
-      right: 40px;
-    }
-
-    #p5 {
-      top: 110px;
-      right: 20px;
-    }*/
-
-    input:checked + img{
-      opacity: 1;
-      
-      /* transition: 1s ease; */
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <link rel="stylesheet" href="radio-slider.css">
 </head>
 <body>
   <div>
-  
-    <input type="radio" name="img" id="p1" checked>
-    <img src="https://i1.mifile.cn/a4/xmad_1542718183295_gZCXT.jpg" alt="">
-    
-  
-  
-  
+    <input checked type="radio" name="img" id="p1">
     <input type="radio" name="img" id="p2">
-    <img src="https://i1.mifile.cn/a4/xmad_15427030629034_vRria.jpg" alt="">
-    
-  
-  
     <input type="radio" name="img" id="p3">
-    <img src="https://i1.mifile.cn/a4/xmad_1542593050318_TVIrS.jpg" alt="">
-  
+    <input type="radio" name="img" id="p4">
     
-  
-    <input type="radio" id="p4" name="img">
-    <img src="https://i1.mifile.cn/a4/xmad_15427624932575_mcJkj.jpg" alt="">
-  
+    <div>
+      <label for="p4"><span class="s1">&lt;</span></label>
+      <label for="p2"><span class="s3">&gt;</span></label>
+      <img src="https://i1.mifile.cn/a4/xmad_1542718183295_gZCXT.jpg" alt="">
+    </div>
     
+    <div>
+      <label for="p1"><span class="s1">&lt;</span></label>
+      <label for="p3"><span class="s3">&gt;</span></label>
+      <img src="https://i1.mifile.cn/a4/xmad_15427940817559_aubLz.jpg" alt="">
+    </div>
+      
+    <div>
+      <label for="p2"><span class="s1">&lt;</span></label>
+      <label for="p4"><span class="s3">&gt;</span></label>
+      <img src="https://i1.mifile.cn/a4/xmad_15427624932575_mcJkj.jpg" alt="">
+    </div>
     
-    <input type="radio" id="p5" name="img">
-    <img src="https://i1.mifile.cn/a4/xmad_15427183282728_fjeaN.jpg" alt="">
+    <div>
+      <label for="p4"><span class="s1">&lt;</span></label>
+      <label for="p1"><span class="s3">&gt;</span></label>
+      <img src="https://i1.mifile.cn/a4/xmad_154243845425_IRSdh.jpg" alt="">
+    </div>
     
+    <section>
+      <label for="p1"><span class="s2"></span></label>
+      <label for="p2"><span class="s2"></span></label>
+      <label for="p3"><span class="s2"></span></label>
+      <label for="p4"><span class="s2"></span></label>
+    </section>
   </div>
 </body>
 </html>

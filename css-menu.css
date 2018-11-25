@@ -1,0 +1,67 @@
+* {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+ul, ol {
+  padding: 0px;
+  list-style: none;
+  display: inline-block;
+}
+
+body > ol >li {
+  display: inline-block;
+}
+
+body > ol > li:nth-child(n+2) {
+  margin-left: 20px;
+}
+
+ol > li > ul {
+  display: none;
+}
+
+li {
+  position: relative;
+  word-break: keep-all;
+
+}
+li.a:hover > ul {
+  display: block;
+  position: absolute;
+  
+  top: 100%;
+  left: 0px;
+}
+
+li:hover > ul {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 100%;
+}
+
+ul li {
+  display: none;
+  padding-right: 20px;
+}
+
+ul ul {
+  position: absolute;
+  top: 0px;
+  left: 100%;
+}
+
+li:hover > ul > li {
+  display: block;
+}
+
+ul ul::before {
+  content: '>';
+  position: absolute;
+  top: 0px;
+  right: 100%;
+}
+
+li:hover {
+  background-color: rgb(255, 103, 0);
+}

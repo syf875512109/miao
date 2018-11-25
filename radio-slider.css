@@ -1,0 +1,118 @@
+body > div {
+  position: relative;
+  width: 1000px;
+}
+
+/* set img width position */
+img {
+  width: 1000px;
+  
+  position: absolute;
+
+  left: 0px;
+  opacity: 0;
+  
+}
+
+/* set input */
+input {
+  margin-top: 210px;
+  display: none;
+}
+
+/* set span style and position */
+span.s2 {
+  display: inline-block;
+  border: 2px solid rgb(154, 154, 154);
+  border-radius: 10px;
+  
+  width: 5px;
+  height: 5px;
+  background-color: rgb(139,139,139);
+  margin-left: 10px;
+  /* position: absolute; */
+  
+}
+
+/* set img when radio checked */
+input:checked + * + * + * + div img {
+  opacity: 1;
+  
+  transition: 1s;
+}
+
+input:checked + * + * + * + div span {
+  z-index: 3;
+}
+
+/* set all label position */
+section {
+  position: absolute;
+  z-index: 5;
+  top: 330px;
+
+  width: 100px;
+  margin-left: 800px;
+
+  font-size: 0px;
+}
+
+/* set label style when hovered */
+section label span.s2:hover {
+  cursor: pointer;
+  background: rgb(240, 240, 240);
+}
+
+/* set label style when radio checked */
+
+input:nth-child(1):checked ~ section label:nth-child(1) span,
+input:nth-child(2):checked ~ section label:nth-child(2) span,
+input:nth-child(3):checked ~ section label:nth-child(3) span,
+input:nth-child(4):checked ~ section label:nth-child(4) span {
+  background-color: rgb(240, 240, 240);
+}
+
+
+/* div span.s1 {
+
+  top: 160px;
+
+  left: 10px;
+
+} */
+
+div span.s3 {
+
+  top: 160px;
+
+  left: 950px;
+  
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  font-size: 30px;
+  height: 50px;
+  line-height: 50px;
+  width: 30px;
+  text-align: center;
+  color: white;
+
+}
+div > label span.s1 {
+  top: 160px;
+
+  left: 10px;
+  
+  cursor: pointer;
+  position: absolute;
+  /* z-index: 1; */
+  font-size: 30px;
+  height: 50px;
+  line-height: 50px;
+  width: 30px;
+  text-align: center;
+  color: white;
+}
+div > label span:hover {
+  background-color: rgb(114, 12, 13);
+}
