@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+
+    * {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      margin-top: 20px;
+      
+      position: relative;
+      
+      
+    }
+
+    div.d1 section {
+      width: 30px;
+      height: 50px;
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      
+      line-height: 50px;
+      
+      margin: auto;
+    }
+    div.d2 {
+      text-align: center;
+      
+      vertical-align: center;
+      
+      line-height: 100px;
+    }
+    div.d2 section {
+      width: 60px;
+      height: 50px;
+      display: inline-block;
+      vertical-align: middle;
+      
+      line-height: normal;
+    }
+
+    table {
+      margin-top: 10px;
+      width: 100px;
+      height: 100px;
+    }
+
+    td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    td > section {
+      width: 30px;
+      height: 50px;
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="d1">
+    <section>
+
+    </section>
+  </div>
+  
+  <div class="d2">
+    <section>
+      
+    </section>
+  </div>
+  
+  <table>
+    <td>
+      <section></section>
+    </td>
+  </table>
+</body>
+</html>
