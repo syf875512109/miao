@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>q</title>
+  
+  <style>
+    html, body{
+      margin: 0px;
+      width: 100%;
+    }
+
+    div.header {
+      width: 100%;
+    }
+    
+    section {
+      width: 100%;
+      box-sizing: border-box;
+      background-image: url(mobike/mobike5.jpg);
+      background-position: left 50% top 50%;
+      background-size: cover;
+
+      padding: 0px calc(50% - 540px);
+    }
+
+    article > aside {
+      height: 100%;
+      width: 100%;
+      background-position: left 50% top 50%;
+      background-size: cover;
+    }
+
+    article:nth-child(1) > aside {
+        background-image: url(mobike/mobike1.jpg);      
+    }
+    article:nth-child(2) > aside {
+        background-image: url(mobike/mobike2.jpg);      
+    }
+    article:nth-child(3) > aside {
+        background-image: url(mobike/mobike3.jpg);      
+    }
+    article:nth-child(4) > aside {
+        background-image: url(mobike/mobike4.jpg);      
+    }
+    @media screen and (min-width: 1080px) {
+
+      section {
+        height: 800px;
+      }
+      div.header div.nav > ul {
+        float: right;
+        margin: 0px;
+        list-style-type: none;
+        padding: 0px;
+        color: white;
+        /*line-height: normal;*/
+      }
+
+      div.header div.nav > ul > li {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 30px;
+        position: relative;
+      }
+      ul ul {
+        /*display: none;*/
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+      }
+      ul ul > li {
+        position: relative;
+        line-height: normal;
+        width: 200px;
+        height: 60px;
+        line-height: 
+        border-bottom: 1px solid;
+
+        margin-left: 20px;
+        margin-top: 20px;
+      }
+      ul ul > li::after{
+        white-space: pre;
+        font-size: 14px;
+        position: absolute;
+        top: 30px;
+        left: 0px;
+        color: rgb(179, 179, 179);
+      }
+      ul ul > li:first-child::after {
+        content: '轻便，可靠';
+      }
+      ul ul > li:nth-child(2)::after {
+        content: '城市随处可骑行';
+      }
+      ul ul > li:nth-child(3)::after {
+        content: '摩拜制造，天生靠得住';
+      }
+      div.header div.nav > ul > li ul {
+        cursor: pointer;
+        background-color: white;
+        color: black;
+        font-size: 25px;
+        /*line-height: 0;*/
+        position: absolute;
+        left: -20px;
+        top: 65px;
+
+        display: none;
+      }
+      div.header div.nav > ul > li:hover ul {
+        display: block;
+      }
+
+      div.header div.nav > ul > li ul::before {
+        content: '';
+        position: absolute;
+        /*width: 0px;*/
+        /*height: 0px;*/
+        /*background-color: red;*/
+
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid white;
+        top: -5px;
+        left: 25px;
+      }
+
+      article {
+        width: 25%;
+        padding-top: 2px;
+        height: 260px;
+        float: left;
+        box-sizing: border-box;
+      }
+      article:nth-child(-n+3) {
+        padding-right: 2px; 
+      }
+    }
+    
+    @media screen and (min-width: 640px) and (max-width: 1080px){
+
+      section {
+        height: 640px;
+      }
+      
+      article {
+        width: 50%;
+        padding-top: 2px;
+        height: 260px;
+        float: left;
+        box-sizing: border-box;
+      }
+
+      article:nth-child(2n+1) {
+        padding-right: 1px;
+      }
+      article:nth-child(2n) {
+        padding-left: 1px;
+      }
+
+      div.header div.nav > ul {
+        display: none;
+      }
+
+    }
+    @media screen and (max-width: 640px){
+
+      section {
+        height: 640px;
+      }
+
+      article {
+        width: 100%;
+        padding-top: 2px;
+        height: 260px;
+      }
+    }
+
+    div.header div.nav {
+      height: 80px;
+      line-height: 80px;
+    }
+
+    div.header div.nav > div.s1 {
+      color: white;
+      float: left;
+      margin-left: 30px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <section>
+      <div class="nav">
+        <div class="s1">
+          摩拜单车
+        </div>
+        
+        <ul>
+          <li>产品
+            <ul>
+              <li>经典版</li>
+              <li>轻骑</li>
+              <li>智能锁</li>
+            </ul>
+          </li>
+          <li>摩拜科技</li>
+          <li>关于</li>
+          <li>广告合作</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="body">
+    <article>
+      <aside></aside>
+    </article>
+
+    <article>
+      <aside></aside>
+    </article>
+
+    <article>
+      <aside></aside>
+    </article>
+
+    <article>
+      <aside></aside>
+    </article>
+  </div>
+
+</body>
+</html>
