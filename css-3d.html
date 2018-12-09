@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>3D</title>
+  <style>
+    * {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+
+div {
+  height: 300px;
+  margin-top: 100px;
+  position: relative;
+  
+  transform-style: preserve-3d;
+  
+  transform: perspective(800px) rotatey(360deg);
+
+  transition: 5s;
+}
+
+section {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100px;
+  height: 100px;
+  
+  margin: auto;
+  
+  opacity: 0.8;
+  text-align: center;
+  line-height: 100px;
+  
+  transition: 2s;
+  
+  
+}
+
+
+.s1 {
+  transform: translatez(50px);
+  background-color: red;
+}
+
+.s2 {
+  transform: rotatey(180deg) translatez(50px);
+  background-color: blue;
+}
+
+.s3 {
+  transform: rotatex(90deg) translatez(50px);
+  background-color: green;
+}
+
+.s4 {
+  transform: rotatex(-90deg) translatez(50px);
+  background-color: yellow;
+}
+
+.s5 {
+  transform: rotatey(90deg) translatez(50px);
+  background-color: gold;
+}
+
+.s6 {
+  transform: rotatey(-90deg) translatez(50px);
+  background-color: gray;
+}
+
+
+  </style>
+</head>
+<body>
+  <div>
+    <section class="s1">1</section>
+    <section class="s2">2</section>
+    <section class="s3">3</section>
+    <section class="s4">4</section>
+    <section class="s5">5</section>
+    <section class="s6">6</section>
+  </div>
+</body>

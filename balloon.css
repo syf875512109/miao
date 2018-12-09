@@ -1,0 +1,170 @@
+
+button {
+  background-color: rgb(255, 61, 46);
+  color: white;
+  width: 160px;
+  height: 48px;
+  border-radius: 5px;
+  border: none;
+  margin: 200px;
+  padding: 0px;
+  position: relative;
+}
+
+button::before {
+  border-radius: 5px;
+  position: absolute;
+  content: attr(data-balloon);
+  font-size: 10px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgb(40, 40, 40);
+  transition: 0.3s;
+  opacity: 0;
+}
+button::after {
+  position: absolute;
+  content: '';
+  transition: 0.3s;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+button[data-balloon-pos="up"]::before {
+  bottom: calc(100% + 0px);
+  left: 50%;
+  transform: translatex(-50%);
+  
+  white-space: pre;
+}
+
+button[data-balloon-length="small"][data-balloon-length="small"]::before {
+
+  word-break: break-all;
+  white-space: normal;
+  width: 50%;
+}
+
+button[data-balloon-length="medium"][data-balloon-length="medium"]::before {
+
+  word-break: break-all;
+  white-space: normal;
+  width: 70%;
+}
+
+button[data-balloon-length="large"][data-balloon-length="large"]::before {
+
+  word-break: break-all;
+  white-space: normal;
+  width: 120%;
+}
+
+button[data-balloon-length="xlarge"][data-balloon-length="xlarge"]::before {
+
+  word-break: break-all;
+  white-space: normal;
+  width: 160%;
+}
+button[data-balloon-length="fit"][data-balloon-length="fit"]::before {
+
+  word-break: break-all;
+  white-space: normal;
+  width: calc(100% - 10px);
+}
+
+button[data-balloon-pos="up"]::after {
+  border: 5px solid rgb(40, 40, 40);
+  bottom: calc(100% - 9px);
+  border-color: rgb(40, 40, 40) transparent transparent;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+button[data-balloon-pos="up"]:hover::before, [data-balloon-pos="up"][data-balloon-visible]::before {
+  transform: translatex(-50%) translatey(-10px);
+  opacity: 1;
+}
+
+button[data-balloon-pos="up"]:hover::after, [data-balloon-pos="up"][data-balloon-visible]::after {
+  transform: translatey(-10px);
+  opacity: 1;
+}
+
+
+
+button[data-balloon-pos="left"]::before {
+  top: 50%;
+  transform: translatey(-50%);
+  right: calc(100% + 0px);
+  white-space: pre;
+}
+button[data-balloon-pos="left"]::after {
+  border: 5px solid rgb(40, 40, 40);
+  right: calc(100% - 9px);
+  border-color: transparent  transparent transparent rgb(40, 40, 40);
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+button[data-balloon-pos="left"]:hover::before, [data-balloon-pos="left"][data-balloon-visible]::before {
+  transform: translatey(-50%) translatex(-10px);
+  opacity: 1;
+}
+button[data-balloon-pos="left"]:hover::after, [data-balloon-pos="left"][data-balloon-visible]::after {
+  transform: translatex(-10px);
+  opacity: 1;
+}
+
+button[data-balloon-pos="down"]::before {
+  top: calc(100% + 0px);
+  left: 50%;
+  transform: translatex(-50%);
+  
+  white-space: pre;
+}
+button[data-balloon-pos="down"]::after {
+  border: 5px solid rgb(40, 40, 40);
+  top: calc(100% - 9px);
+  border-color: transparent transparent rgb(40, 40, 40);
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+button[data-balloon-pos="down"]:hover::before, [data-balloon-pos="down"][data-balloon-visible]::before {
+  transform: translatex(-50%) translatey(10px);
+  opacity: 1;
+}
+button[data-balloon-pos="down"]:hover::after, [data-balloon-pos="down"][data-balloon-visible]::after {
+  transform: translatey(10px);
+  opacity: 1;
+}
+
+
+
+button[data-balloon-pos="right"]::before {
+  top: 50%;
+  transform: translatey(-50%);
+  left: calc(100% + 0px);
+  white-space: pre;
+  /* width: fit-content; */
+}
+button[data-balloon-pos="right"]::after {
+  border: 5px solid rgb(40, 40, 40);
+  left: calc(100% - 9px);
+  border-color: transparent rgb(40, 40, 40) transparent transparent;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+button[data-balloon-pos="right"]:hover::before, [data-balloon-pos="right"][data-balloon-visible]::before {
+  transform: translatey(-50%) translatex(10px);
+  opacity: 1;
+}
+button[data-balloon-pos="right"]:hover::after, [data-balloon-pos="right"][data-balloon-visible]::after{
+  transform: translatex(10px);
+  opacity: 1;
+}
+
+
