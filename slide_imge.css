@@ -1,0 +1,132 @@
+
+
+div.container {
+  width: 600px;
+  height: 400px;
+  background-color: gray;
+  margin: 200px auto;
+}
+
+div.container div {
+  width: 150px;
+  height: 400px;
+  float: left;
+  position: relative;
+
+  overflow: hidden;
+}
+div.container div label {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 0 4px rgb(255, 255, 255, 0.3);
+
+
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  z-index: 10;
+  color: white;
+  left: 0px;
+  right: 0px;
+  top: 330px;
+  margin: 0px auto;
+  background-color: rgb(127, 187, 208);
+}
+input:nth-child(1):checked ~ div.container div:nth-child(1) label,
+input:nth-child(2):checked ~ div.container div:nth-child(2) label,
+input:nth-child(3):checked ~ div.container div:nth-child(3) label,
+input:nth-child(4):checked ~ div.container div:nth-child(4) label {
+  background-color: white;
+  color: rgb(127, 187, 208);
+}
+
+div.container div span {
+
+  position: absolute;
+  width: 150px;
+  height: 400px;
+  
+  left: -150px;
+  /*background-position: 1px 0;*/
+}
+
+input:nth-child(1):checked ~ div.container,
+div.container div span:nth-child(1) {
+  background-image: url(slide/1.jpg);
+  z-index: 2;
+}
+
+input:nth-child(2):checked ~ div.container,
+div.container div span:nth-child(2) {
+  background-image: url(slide/2.jpg);
+}
+input:nth-child(3):checked ~ div.container,
+div.container div span:nth-child(3) {
+  background-image: url(slide/3.jpg);
+}
+input:nth-child(4):checked ~ div.container,
+div.container div span:nth-child(4) {
+  background-image: url(slide/4.jpg);
+}
+
+div.container div:nth-child(1) span {
+  background-position: 0 0;
+}
+
+div.container div:nth-child(2) span {
+  background-position: -150px 0;
+}
+
+div.container div:nth-child(3) span {
+  background-position: -300px 0;
+}
+
+div.container div:nth-child(4) span {
+  background-position: -450px 0;
+}
+@keyframes slide-out {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 150px;
+  }
+}
+
+input:checked ~ div.container div span {
+  animation: slide-out 1s linear;
+}
+
+input:nth-child(1):checked ~ div.container div span:nth-child(1),
+input:nth-child(2):checked ~ div.container div span:nth-child(2),
+input:nth-child(3):checked ~ div.container div span:nth-child(3),
+input:nth-child(4):checked ~ div.container div span:nth-child(4) {
+  animation: none;
+  left: 0px;
+  transition: left 1s linear;
+}
+/*@keyframes slid-in {
+  from {
+    left: -150px;
+  }
+  to {
+    left: 0px;
+  }
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
