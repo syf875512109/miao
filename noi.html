@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script id="ch0101/01" type="101.1">
+    console.log("Hello, World!");
+  </script>
+  
+  <script id="ch0101/02" type="101.2">
+    var a = +prompt();
+    var b = +prompt();
+    var c = +prompt();
+
+    console.log(b);
+  </script>
+
+
+  <script id="ch0101/03" type="101.3">
+    var a = prompt();
+    var b = prompt();
+    var c = prompt();
+    console.log('' + a + ' ' + b + ' ' + c);
+  </script>
+
+  <script id="ch0101/04" type="101.4">
+    var a = +prompt();
+
+    console.log(a.toFixed(3));
+  </script>
+
+  <script id="ch0101/05" type="101.5">
+    var a = +prompt();
+
+    console.log(a.toFixed(12));
+  </script>
+
+  <script id="ch0101/06" type="101.6">
+    var a = prompt();
+    var b = prompt();
+    var c = prompt();
+    var d = prompt();
+
+    console.log('' + a + ' ' + b + ' ' + c + ' ' + d);
+  </script>
+
+  <script id="ch0101/07" type="101.7">
+
+    console.log();
+  </script>
+
+  <script id="ch0101/08" type="101.8">
+    var a = prompt();
+
+    console.log("  " + a);
+    console.log(" " + a + a + a);
+    console.log("" + a + a + a + a + a);
+  </script>
+
+  <script id="ch0101/09" type="101.9">
+    var a = prompt();
+
+    console.log("  " + a);
+    console.log(" " + a + a + a);
+    console.log("" + a + a + a + a + a);
+    console.log(" " + a + a + a);
+    console.log("  " + a);
+  </script>
+
+
+  <script id="ch0103/01" type="103.1">
+    var a = +prompt(),
+        b = + prompt();
+
+    console.log(a+b);
+  </script>
+
+  <script id="ch0103/02" type="103.2">
+    var a = +prompt(),
+        b = +prompt(),
+        c = +prompt();
+    console.log(a*b*c);
+  </script>
+
+  <script id="ch0103/03" type="103.3">
+    var a = +prompt(),
+        b = +prompt(),
+        c = +prompt();
+    console.log((a+b)/c);
+  </script>
+
+  <script id="ch0103/04" type="103.4">
+    var a = +prompt(),
+        b = +prompt();
+    console.log(parseInt(a/b), a % b);
+  </script>
+
+  <script id="ch0103/05" type="103.5">
+    var a = +prompt(),
+        b = +prompt();
+    console.log((a/b).toFixed(9));
+  </script>
+
+  <script id="ch0103/06" type="103.6">
+    var a = +prompt(),
+        b = +prompt();
+    console.log((b/a*100).toFixed(3) + '\%');
+  </script>
+
+  <script id="ch0103/07" type="103.7">
+    var x = +prompt(),
+        a = +prompt(),
+        b = +prompt(),
+        c = +prompt(),
+        d = +prompt();
+    console.log((a*x*x*x + b*x*x +  c*x +d).toFixed(7));
+  </script>
+
+  <script id="ch0103/08" type="103.8">
+    var a = +prompt();
+    console.log((5 * (a - 32) / 9).toFixed(5));
+  </script>
+
+<script id="ch0103/08" type="103.9">
+  var a = +prompt();
+  const pi = 3.14159;
+  console.log((2*a).toFixed(4), (2 * pi * a).toFixed(4), (pi * a * a).toFixed(4));
+</script>
+
+<script id="ch0103/10" type="103.10">
+  var a = +prompt(),
+      b = +prompt();
+  console.log( (1 / (1 / a + 1 / b) ).toFixed(2));
+</script>
+
+<script id="ch0103/11" type="103.11">
+  var a = +prompt(),
+      b = +prompt();
+  console.log( (a % b).toFixed(4));
+</script>
+
+<script id="ch0103/12" type="103.12">
+  var a = +prompt();
+
+  console.log( (3.14 * a * a * a * 4 / 3).toFixed(2));
+</script>
+
+<script id="ch0103/13" type="103.13">
+  var a = +prompt();
+
+  var b = parseInt(a / 10) % 10,
+      c = parseInt(a / 100),
+      d = a % 10;
+  console.log('' + d + b + c);
+</script>
+
+<script id="ch0103/14" type="103.14">
+  var hun = 20000;
+  var a = +prompt(),
+      b = +prompt();
+
+  var v = 3.14 * b * b * a;
+  var number = hun / v;
+  console.log(Math.ceil(number));
+</script>
+
+<script id="ch0103/15" type="103.15">
+  var number = +prompt(),
+      v = +prompt(),
+      hour = +prompt();
+  console.log(number - Math.ceil(hour / v))
+</script>
+
+<script id="ch0103/16" type="103.16">
+  var x1 = +prompt(),
+      x2 = +prompt(),
+      y1 = +prompt(),
+      y2 = +prompt();
+
+  console.log((Math.sqrt((x1 - y1) * (x1 - y1) + (x2 - y2) * (x2 - y2))).toFixed(3))
+</script>
+
+<script id="ch0103/17" type="103.17">
+  var x1 = +prompt(),
+      x2 = +prompt(),
+      y1 = +prompt(),
+      y2 = +prompt(),
+      z1 = +prompt(),
+      z2 = +prompt();
+
+  var c1 = Math.sqrt((x1 - y1) * (x1 - y1) + (x2 - y2) * (x2 - y2)),
+      c2 = Math.sqrt((x1 - z1) * (x1 - z1) + (x2 - z2) * (x2 - z2)),
+      c3 = Math.sqrt((z1 - y1) * (z1 - y1) + (z2 - y2) * (z2 - y2));
+
+  var circle = (c1 + c2 + c3) / 2;
+
+  var squre = Math.sqrt(circle * (circle - c1) * (circle - c2) * (circle - c3));
+  console.log(squre.toFixed(2));
+</script>
+
+<script id="ch0103/18" type="103.18">
+  var a1 = +prompt(),
+      a2 = +prompt(),
+      n = +prompt();
+  console.log(a1 + (n-1) * (a2 - a1));
+</script>
+
+<script id="ch0103/19" type="103.19">
+  var a1 = +prompt(),
+      a2 = +prompt();
+  console.log(a1 * a2);
+</script>
+
+<script id="ch0103/20" type="103.20">
+  var a = +prompt();
+
+  console.log(Math.pow(2, a));
+</script>
+
+<script id="ch0104/01" type="101.1">
+  var a = +prompt();
+  if (a > 0) {
+    console.log("positive");
+  }else if (a < 0) {
+    console.log("negative");
+  }else {
+    console.log("zero");
+  }
+</script>
+
+<script id="ch0104/02" type="101.2">
+  var a = +prompt();
+  if (a >= 0) {
+    console.log(a);
+  }else {
+    console.log(-a);
+  }
+</script>
+
+<script id="ch0104/03" type="104.3">
+  var a = +prompt();
+  if (a % 2 === 0) {
+    console.log("even");
+  }else {
+    console.log("odd");
+  }
+</script>
+
+<script id="ch0104/04" type="104.4">
+  var a = prompt();
+  a = a.charCodeAt();
+  if (a % 2 === 0) {
+    console.log("NO");
+  }else {
+    console.log("YES");
+  }
+</script>
+
+<script id="ch0104/05" type="104.5">
+  var a = +prompt();
+  var b = +prompt();
+
+  if (a > b) {
+    console.log(">");
+  }else if (a < b) {
+    console.log("<");
+  } else {
+    console.log("=");
+  }
+</script>
+
+<script id="ch0104/06" type="104.6">
+  var a = +prompt();
+  if (a > 9 && a < 100) {
+    console.log(1);
+  }else {
+    console.log(0);
+  }
+</script>
+
+<script id="ch0104/07" type="104.7">
+  var a = +prompt();
+  var b = +prompt();
+  if (a >= 10 && b >= 20) {
+    console.log(1);
+  }else {
+    console.log(0);
+  }
+</script>
+
+<script id="ch0104/08" type="104.8">
+  var a = +prompt();
+  if (a % 3 == 0 && a % 5 == 0) {
+    console.log("YES");
+  }else {
+    console.log("NO");
+  }
+</script>
+
+<script id="ch0104/09" type="104.9">
+  var a = +prompt();
+  
+  if (a % 3 == 0 && a % 5 == 0 & a % 7 == 0) {
+    console.log(3, 5, 7);
+  }else if (a % 3 == 0 && a % 5 == 0) {
+    console.log(3, 5);
+  }else if (a % 3 == 0 && a % 7 == 0) {
+    console.log(3, 7);
+  }else if (a % 5 == 0 && a % 7 == 0) {
+    console.log(5, 7);
+  }else if (a % 3 == 0) {
+    console.log(3);
+  }else if (a % 5 == 0) {
+    console.log(5);
+  }else if (a % 7 == 0) {
+    console.log(7);
+  }else {
+    console.log("n");
+  }
+</script>
+
+<script id="ch0104/10" type="104.10">
+  var a = +prompt();
+  var b = +prompt();
+  
+  if ( a < 60 && b >= 60 || a >= 60 && b < 60) {
+    console.log(1);
+  }else {
+    console.log(0);
+  }
+</script>
+
+<script id="ch0104/11" type="104.11">
+  var a = +prompt();
+  if (a  == 1 || a == 3 || a == 5) {
+    console.log("NO");
+  }else {
+    console.log("YES");
+  }
+</script>
+
+<script id="ch0104/12" type="104.12">
+  var a = +prompt();
+  var t1 = 50 + a / 3;
+  var t2 = a / 1.2;
+  if (t1 > t2) {
+    console.log("Walk");
+  }else if(t1 < t2) {
+    console.log("Bike");
+  }else {
+    console.log("All");
+  }
+</script>
+
+<script id="ch0104/13" type="104.13">
+  var a = +prompt();
+  if (a >= 0 && a < 5) {
+    console.log((-a + 2.5).toFixed(3));
+  }else if(a >= 5 && a < 10) {
+    console.log((2 - 1.5 * (a - 3) * (a - 3)).toFixed(3));
+  }else if(a >= 10 && a < 20) {
+    console.log((a / 2 - 1.5).toFixed(3));
+  }
+</script>
+
+<script id="ch0104/14" type="104.14">
+  var a = +prompt();
+  var b = prompt();
+
+  var money;
+  if (a <= 1000) {
+    money = 8;
+  }else {
+    money = Math.ceil((a - 1000) / 500) * 4 + 8;
+  }
+
+  if (b == "y") {
+    money += 5;
+  }
+  console.log(money);
+</script>
+
+<script id="ch0104/15" type="104.15">
+  var a = +prompt();
+  var b = +prompt();
+  var c = +prompt();
+
+  var number;
+
+  if (a > b) {
+    if (a > c) {
+      bumber = a;
+    }else {
+      number = c;
+    }
+  } else if (b > c) {
+    number = b;
+  }else {
+    number = c;
+  }
+  console.log(c);
+</script>
+
+<script id="ch0104/16" type="104.16">
+  var a = +prompt();
+  var b = +prompt();
+  var c = +prompt();
+
+  if (a + b > c && a + c > b && b + c > a) {
+    console.log("yes");
+  }else {
+    console.log("no");
+  }
+</script>
+
+<script id="ch0104/17" type="104.17">
+  var a = +prompt();
+  if (a % 400 == 0 || a % 4 == 0 && a % 100 != 0) {
+    console.log("Y");
+  }else {
+    console.log("N");
+  }
+</script>
+
+<script id="ch0104/18" type="104.18">
+  var a = +prompt();
+  var b = +prompt();
+
+  if(a >= -1 && a <= 1 && b >= -1 && b <= 1) {
+    console.log("yes");
+  }else {
+    console.log("no");
+  }
+</script>
+
+<script id="ch0104/19" type="104.19">
+  var a = +prompt();
+  var b = +prompt();
+  var opera = prompt();
+  var result;
+  if (opera == "+") {
+    opera = a + b;
+    console.log(opera);
+  }else if (opera == "-") {
+    opera = a - b;
+    console.log(opera);
+  }else if (opera == "*") {
+    opera = a * b;
+    console.log(opera);
+  }else if (opera == "/") {
+    opera = a / b;
+    console.log(opera);
+  }else {
+    console.log("Invalid operator!")
+  }
+</script>
+
+<script id="ch0104/20" type="104.20">
+  var a = +prompt();
+  var b = +prompt();
+  var c = +prompt();
+  
+  var dulta = b * b - 4 * a * c;
+  var x1, x2;
+  if (a == 0) {
+    x1 = -c / b;
+    console.log(x1);
+  }else {
+    if (dulta > 0) {
+      x1 = (-b + Math.sqrt(dulta)) / (2 * a);
+      x2 = (-b - Math.sqrt(dulta)) / (2 * a);
+      x1 = x1.toFixed(5);
+      x2 = x2.toFixed(5);
+      console.log("x1=" + x1 + ";" + "x2=" + x2);
+    }else if (dulta < 0) {
+      var x3 = (-b / (2 * a)).toFixed(5);
+      var x4 = (Math.sqrt(-dulta) / (2 * a)).toFixed(5);
+      x1 = '' + x3 + "+" + x4 + "i";
+      x2 = '' + x3 + "-" + x4 + "i";
+
+      console.log("x1=" + x1 + ";" + "x2=" + x2);
+    }else {
+      x1 = -b / (2 * a);
+      x2 = x1.toFixed(5);
+      console.log("x1=x2=" + x2);
+    }
+  }
+</script>
+
+<script id="ch0104/21" type="103.21">
+  var number = +prompt(),
+      v = +prompt(),
+      hour = +prompt();
+  console.log(number - Math.ceil(hour / v))
+</script>
+</head>
+<body>
+  
+</body>
+</html>
