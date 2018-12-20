@@ -837,7 +837,7 @@
   console.log(max_t);
 </script>
 
-<script id="ch0105/25" type="">
+<script id="ch0105/25" type="105.25">
   var result;
   for (let number = 81; number <= 6 * 49 + 6 * 7 + 6; number++) {
     var n_71, n_72, n_73;
@@ -960,11 +960,13 @@
       }
     }
   }
+  var ar = new Array(N);
   for(let k = 0; k < N; k++) {
     if (arr[k] == 0) {
-      console.log(k + 1);
+      ar.push(k + 1);
     }
   }
+  console.log(ar.join(','));
 </script>
 
 <script id="ch0105/32" type="105.32">
