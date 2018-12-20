@@ -853,7 +853,9 @@
     n_93 = parseInt(number / 81) % 9;
 
     if ('' + n_71 + n_72 + n_73 == '' + n_93 + n_92 + n_91) {
+      console.log('' + n_71 + n_72 + n_73);
       console.log(number);
+      console.log('' + n_91 + n_92 + n_93);
       break;
     }
   }
@@ -1135,12 +1137,9 @@
     for (let j = 0; j < col; j++) {
 
       if (i == 0 || i == row - 1) {
-        if (j != col -1) {
-          str += charac;
-        }
-        else {
-          str += charac + '\n';
-        }
+        str += charac;
+        if (i == 0 && j == col-1)
+          str += '\n';
       }else if (j == 0) {
         str += charac;
       }else if (j == col - 1) {
