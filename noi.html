@@ -940,7 +940,7 @@
   
 </script>
 
-<script id="ch0105/31" type="">
+<script id="ch0105/31" type="105.31">
   var N = +prompt();
   var M = +prompt();
   var result = '';
@@ -957,7 +957,7 @@
         if (j % i == 0) {
           arr[j - 1] ^= 1; 
         }
-      }
+    }
     }
   }
   var ar = new Array();
@@ -1222,6 +1222,350 @@
 
   sum_money += i * (n - sum_day);
   console.log(sum_money);
+</script>
+
+
+<script id="sort" type="sort" sample-input="4 1 7" sample-output="1 4 7" comment="输入三个数，把此三个数按升序输出">
+  var arr = new Array();
+  for(let i = 0; i < 3; i++) {
+    arr[i] = +prompt();
+  }
+  var temp;
+  
+  for (let i = 0; i < 2; i++) {
+    var flag = 1;
+    for (let j = 0; j < 2; j++) {
+      if (arr[j] > arr[j+1]) {
+        temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+      }
+    }
+  }
+  for(let i = 0; i < 3; i++) {
+    console.log(arr[i]);
+  }
+</script>
+
+题目：水仙花数。水仙花数是指一个N位的十进制数，其各位数的N次方的和等于它自己。
+如：153 =　1的三次方+5的三次方+3的三次方，则153就是一个水仙花数
+或：1634 =　1的四次方+6的四次方+3的四次方+4的四次方
+因为1634是一个四位数。
+找出100到100000以内所有的水仙花数。
+<script id="narcissistic " type="nar" sample-input="153" sample-output="YES" comment="判断一个数是否为水仙花数">
+
+  var samp = +prompt();
+
+  var number = samp;
+  var number_count = samp;
+  var count = 0;
+  var sum = 0;
+
+  // calc count
+  while(number_count) {
+    number_count = number_count / 10 >> 0;
+    count++;
+  }
+
+  //calc power sum of every position
+  while(number) {
+    var result = 1;
+    for(let j = 0; j < count; j++) {
+      result *= number % 10;
+    }
+    sum += result;
+    number = number / 10 >> 0;
+  }
+
+  // if daffodil then print
+  if (sum == samp) {
+    console.log("YES");
+  }
+</script>
+<script id="narcissistics" type="narcissist" sample-input="" sample-output="" comment="找出100到10000以内所有的水仙花数">
+  for (let i = 100; i <= 100000; i++) {
+    var number = i;
+    var number_count = i;
+    var count = 0;
+    var sum = 0;
+
+    // calc count
+    while(number_count) {
+      number_count = number_count / 10 >> 0;
+      count++;
+    }
+
+    //calc power sum of every position
+    while(number) {
+      var result = 1;
+      for(let j = 0; j < count; j++) {
+        result *= number % 10;
+      }
+      sum += result;
+      number = number / 10 >> 0;
+    }
+
+    // if daffodil then print
+    if (sum == i) {
+      console.log(i);
+    }
+  }
+</script>
+<script id="palindrom" type="palindrom" sample-input="12321" sample-output="YES" comment="判断一个非负整数是否为回文数字">
+  var samp = +prompt();
+  var sum = 0;
+  var number = samp;
+  while(number) {
+    sum = sum * 10 + number % 10;
+    number = number / 10 >> 0;
+  }
+
+  if (sum == samp) {
+    console.log("YES");
+  }
+</script>
+
+<script id="weekday" type="weekday" sample-input="2018 6" sample-output="5" comment="输入年份与月份，给出该年该月的第一天是星期几">
+  var year = +prompt();
+  var month = +prompt();
+
+  var leap_year = ((year - 1900) / 4 >> 0);
+  var all_day = leap_year * 366 + (year - 1900 -leap_year) * 365;
+  var flag = (year % 400 == 0 || year % 4 == 0 && year % 100 != 0) ? 1 : 0;
+
+  console.log(leap_year);
+  console.log(year - 1900 - leap_year);
+  switch (month) {
+    case 1:
+      all_day += 1;
+      break;
+    case 2:
+      all_day += 32;
+      break;
+    case 3:
+      all_day += flag ? 61 : 60;
+      break;
+    case 4:
+      all_day += flag ? 92 : 91;
+      break;
+    case 5:
+      all_day += flag ? 122 : 121;
+      break;
+    case 6:
+      all_day += flag ? 153 : 152;
+      break;
+    case 7:
+      all_day += flag ? 183 : 182;
+      break;
+    case 8:
+      all_day += flag ? 214 : 213;
+      break;
+    case 9:
+      all_day += flag ? 245 : 244;
+      break;
+    case 10:
+      all_day += flag ? 275 : 274;
+      break;
+    case 11:
+      all_day += flag ? 306 : 305;
+      break;
+    case 12:
+      all_day += flag ? 336 : 335;
+      break;
+  }
+  if(flag) {
+    all_day -= 1;
+  }
+  if (all_day % 7 == 0) {
+    console.log(7);
+  }else {
+    console.log(all_day % 7);
+  }
+</script>
+<script id="complete-number" type="template" sample-input="6" sample-output="YES" comment="判断一个数是否为完全数">
+  var number = +prompt();
+  var sum = 1;
+
+  for(let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i == 0) {
+      sum += i;
+      if (i != Math.sqrt(number)) {
+        sum += number / i;
+      }
+    }
+  }
+  if (sum == number) {
+      console.log("YES");
+  }
+</script>
+<script id="complete-numbers" type="complete-numbers" sample-input="" sample-output="" comment="输出10000以内所有的完全数">
+  for (let k = 0; k <= 10000; k++) {
+    var sum = 1;
+
+    for(let i = 2; i <= Math.sqrt(k); i++) {
+      if (k % i == 0) {
+        sum += i;
+        if (i != Math.sqrt(k)) {
+          sum += k / i;
+        }
+      }
+    }
+    if (sum == k) {
+        console.log(k);
+    }
+  }
+</script>
+<script id="prime" type="prime" sample-input="7" sample-output="YES" comment="判断一个数是否为素数">
+  var number = +prompt();
+  var i = 2;
+  for (i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i == 0) {
+      console.log("NO");
+      break;
+    }
+  }
+
+  if (number >= 2 && i > Math.sqrt(number)) {
+    console.log("YES");
+  }else if(number < 2){
+    console.log("NO");
+  }
+</script>
+<script id="primes" type="primes" sample-input="" sample-output="" comment="输出100以内所有的素数">
+  for(let k = 1; k <= 100; k++) {
+    var i = 2;
+    for (i = 2; i <= Math.sqrt(k); i++) {
+      if (k % i == 0) {
+        break;
+      }
+    }
+    if (k >= 2 && i > Math.sqrt(k)) {
+      console.log(k);
+    }
+  }
+</script>
+<script id="itob" sample-input="123" sample-output="123" comment="数字转换成字符串，即实现Number函数的功能，不可使用+号或者Number函数">
+  var str_n = prompt();
+  var flag = 0;
+  var sum = 0;
+  for (x of str_n) {
+    switch(x) {
+      case '0':
+        sum = sum * 10 + 0;
+        break;
+      case '1':
+        sum = sum * 10 + 1;
+        break;
+      case '2':
+        sum = sum * 10 + 2;
+        break;
+      case '3':
+        sum = sum * 10 + 3;
+        break;
+      case '4':
+        sum = sum * 10 + 4;
+        break;
+      case '5':
+        sum = sum * 10 + 5;
+        break;
+      case '6':
+        sum = sum * 10 + 6;
+        break;
+      case '7':
+        sum = sum * 10 + 7;
+        break;
+      case '8':
+        sum = sum * 10 + 8;
+        break;
+      case '9':
+        sum = sum * 10 + 9;
+        break;
+      default: 
+        flag = 1;
+        break;
+    }
+    if (flag) {
+      break;
+    }
+  }
+  if (flag) {
+    console.log(NaN);
+  }else {
+    console.log(sum);
+  }
+</script>
+<script id="lcf&lcm" type="lcfm" sample-input="12 9" sample-output="36 3" comment="给定两个数，求它们的最小公倍数和最大公约数">
+  var m = +prompt();
+  var n = +prompt();
+
+  var m_number = m;
+  var n_number = n;
+  var r;
+  do {
+    r = m_number % n_number;
+    m_number = n_number;
+    n_number = r;
+  }while (r != 0);
+  console.log(m * n / m_number, m_number);
+</script>
+
+题目：敲7。输出1到100以内所有7的倍数以及数字中包含7的数，如7（7的倍数），37（不是倍数但数位中包含7）都需要输出，依次类推
+<script id="7" type="7" sample-input="" sample-output="" comment="敲7，输出7的倍数或数位中含有7的数如（21，27）">
+  for(let i = 1; i <= 100; i++) {
+    if (i % 7 == 0){
+      console.log(i);
+    }else {
+      var number = i;
+      var p;
+      while (number) {
+        p = number % 10;
+        if (p == 7) {
+          console.log(i);
+          break;
+        }
+        number = number / 10 >> 0;
+      }
+    }
+  }
+</script>
+<script id="sqrt" type="sqrt" sample-input="2" sample-output="1.414" comment="不使用Math.sqrt，求一个非负数的平方根，至少精确到小数点后3位">
+  var number = +prompt();
+  var p = 0;
+  var flag = 10;
+
+  for(var i = 1; i <= 4; i++) {
+    flag /= 10;
+    while (true) {
+      if (p * p <= number && (p + flag) * (p + flag) > number) {
+        break;
+      }
+      p += flag;
+    }
+  }
+  console.log(p.toFixed(3));
+</script>
+
+给定M和N，求从M个物体中选出N个的排列与组合的数量：
+Ｃ（ｍ，ｎ）
+Ａ（ｍ，ｎ）
+<script id="c&a" type="c&a">
+  var m = +prompt();
+  var n = +prompt();
+  function select(m, n) {
+    if (n == 1) {
+      return m;
+    }else {
+      return select(m, 1) * select(m-1, n-1);
+    }
+  }
+
+  console.log(select(m, n));
+</script>
+
+题目：给定一个数，对其进行四舍五入，如1.4输出1，1.6输出2
+<script id="round" type="round">
+  var number = +prompt();
+  console.log((number + 0.5) >> 0)
 </script>
 </head>
 <body>

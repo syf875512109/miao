@@ -1,0 +1,81 @@
+<script type="aaa">
+  var charac = "#";
+  var charab = " ";
+  var n = +prompt();
+
+  str = '';
+  var charac_1 = "#"
+  var charac_2 = " ";
+
+  for (let i = 0; i < n; i++) {
+    for(let j = 0; j < n - 1 - i; j++) {
+      str += charab;
+    }
+    str += charac + '\n';
+    charac += "##";
+  }
+
+  for(let i = n - 2; i >= 0; i--) {
+    str += charac_2;
+    for (let j = 0; j < 2 * i + 1; j++) {
+      str += charac_1;
+    }
+    if (i != 0) {
+      str += '\n';
+    }
+
+    charac_2 += " ";
+  }
+
+  console.log(str);
+</script>
+
+<script type="aaa">
+  var even = " # # # #";
+  var odd = "# # # # ";
+  var char_even = " ";
+  var char_odd = "#";
+  var str = "";
+
+  var m = 200;
+  var n = 10;
+  for(var i = 0; i < m; i++) {
+    for(var j = 0; j < n; j++) {
+      if ((i + j) % 2 == 0) {
+        str += char_even;
+      }else {
+        str += char_odd;
+      }
+    }
+    if (i != m - 1) {
+      str += '\n';
+    }
+  }
+  console.log(str);
+</script>
+
+<script>
+  var even = " # # # #";
+  var odd = "# # # # ";
+  var char_even = " ";
+  var char_odd = "#";
+  var str = "";
+
+  var m = 8;
+  var n = 8;
+
+  for (let i = 0; i < m * n; i++) {
+    var row = i / m >> 0;
+    var col = i % m;
+    if ((row + col) % 2 == 0) {
+      str += char_even;
+    }else {
+      str += char_odd;
+    }
+
+    if (i % m == m -1) {
+      str += '\n';
+    }
+  }
+  console.log(str);
+</script>

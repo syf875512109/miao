@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="400" height="300"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated'
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+  /**
+   * YOUR TASK
+画图的题：
+画一条实线
+画一条一个实点一个空点的虚线
+画一条两个实点两个空点的虚线
+画一条三个实点两个空点的虚线
+画一条45度的斜线
+画一条跨越画布左上角和右下角的对角线
+画一个空心矩形
+画一个实心矩形
+画一个rgb色彩空间的某一面
+画一个空心的圆
+画一个实心的圆
+画一个大小合适的sin(x)的图像
+   */
+</script>
+<script>
+  // YOUR CODE GOES BELOW
+  for (var x = 0; x <= 400; x++) {
+    var y = 10;
+    dot(x, y);
+  }
+
+  for (let x = 0; x <= 400; x++) {
+    var y = 20;
+    if(x % 2 == 0) {
+      dot(x, y, "blue");
+    }
+  }
+
+  for (let x = 0; x <= 400; x++) {
+    var y = 30;
+    if(x % 4 == 0 || x % 4 == 1) {
+      dot(x, y, "blue");
+    }
+  }
+
+  for (let x = 0; x <= 400; x++) {
+    var y = 40;
+    if(x % 5 == 0 || x % 5 == 1 || x % 5 == 2) {
+      dot(x, y);
+    }
+  }
+
+  for (let x = 0; x <= 300; x++) {
+    var y = x;
+    dot(x, y, "purple");
+  }
+
+  for (let x = 0; x <= 400; x++) {
+    var y = x * 3 / 4;
+    dot(x, y, "purple");
+  }
+
+  for (let x = 100; x <= 140; x++) {
+    for(let y = 100; y <= 140; y++) {
+      dot(x, y, "blue");
+    }
+  }
+
+  for (let x = 150; x <= 190; x++) {
+    for(let y = 150; y <= 190; y++) {
+      if (x == 150 || x == 190 || y == 150 || y == 190) {
+        dot(x, y);
+      }
+    }
+  }
+
+  for (let x = 200; x <= 263; x++) {
+    for(let y = 200; y <= 263; y++) {
+      dot(x, y, 'rgb(255, ' + ((x - 200) * 4) + ', ' + ((y - 200) * 4) + ')');
+    }
+  }
+  
+  
+  for (let x = 200; x <= 260; x += 1) {
+    y = Math.sqrt(30 * 30 - (x - 230) * (x - 230));
+    dot(x, y + 120, "green");
+    dot(x, -y + 120, "green");
+  }
+  for (let y = 90; y <= 150; y += 1) {
+    x = Math.sqrt(30 * 30 - (y - 120) * (y - 120));
+    dot(x + 230, y, "green");
+    dot(-x + 230, y, "green");
+  }
+
+
+  for (let x = 280; x <= 340; x += 0.05) {
+    for (let y = 0; y <= 30; y += 1){
+      if ((x - 310) * (x - 310) + y * y <= 30 * 30) {
+        dot(x, y + 120, "yellow");
+        dot(x, -y + 120, "yellow");
+      }
+    }
+  }
+
+  for (let x = 0; x <= 400; x++) {
+    y = Math.sin(x/15) * 20;
+    dot(x, y + 160);
+  }
+</script>
+</html>
