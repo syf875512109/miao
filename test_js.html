@@ -55,27 +55,24 @@
 </script>
 
 <script>
-  var even = " # # # #";
-  var odd = "# # # # ";
-  var char_even = " ";
-  var char_odd = "#";
-  var str = "";
-
-  var m = 8;
-  var n = 8;
-
-  for (let i = 0; i < m * n; i++) {
-    var row = i / m >> 0;
-    var col = i % m;
-    if ((row + col) % 2 == 0) {
-      str += char_even;
-    }else {
-      str += char_odd;
-    }
-
-    if (i % m == m -1) {
-      str += '\n';
+  // 'use strict';
+  var one = function (f) {
+    return function() {
+      return f();
     }
   }
-  console.log(str);
+
+  function add(n, m) {
+    return function (f) {
+      return function() {
+        return m(f)(n(f)());
+      }
+    }
+  }
+
+  var two = add(one, one);
+  var three = add(two, one);
+  three(function() {
+    console.log("print three times");
+  })();
 </script>
