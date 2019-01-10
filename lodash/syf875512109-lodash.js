@@ -6,7 +6,7 @@ var syf875512109 = (function(){
     let j = 0;
     for(let i = 0; i < array.length; i++) {
       temp = array[i];
-      if (!(temp == false && (!temp != false)) || !isNaN(temp)) {
+      if (!isNaN(temp) && !(temp == false && (!temp != false))) {
         arr[j++] = temp;
       }
     }
