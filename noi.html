@@ -1614,7 +1614,55 @@
     return pos;
   }
 
-  console.log(my_sqrt(number).toFixed(3));
+  var my_sqrt2 = function (max_number, min_number) {
+    min_number = min_number ? min_number : 0;
+    if(Math.abs(max_number - min_number) <= 0.00001){
+      return min_number;
+    }
+
+    var mid_number = (max_number + min_number) / 2;
+    if (mid_number * mid_number <= number) {
+      min_number = mid_number;
+    }else {
+      max_number = mid_number;
+    }
+    return my_sqrt2(max_number, min_number);
+  }
+
+  var my_sqrt3 = function (number) {
+    
+    var max_number = number;
+    var min_number = 0;
+
+    while (max_number - min_number > 0.00001) {
+      var mid_number = (max_number + min_number) / 2;
+      if(mid_number * mid_number <= number) {
+        min_number = mid_number;
+      }else {
+        max_number = mid_number;
+      }
+    }
+    return max_number;
+  }
+
+  var my_sqrt4 = function (number) {
+
+    var n = number;
+    while (true) {
+      var y = number * number - n;
+      var k = 2 * number;
+      var b = y - k * number;
+      var x = -b / k;
+
+      if (number - x <= 0.000001){
+        break;
+      }
+      number = x;
+    }
+    return number;
+  }
+ 
+  console.log((my_sqrt4(number)).toFixed(3));
 </script>
 
 给定M和N，求从M个物体中选出N个的排列与组合的数量：
@@ -1638,6 +1686,368 @@
 <script id="round" type="round">
   var number = +prompt();
   console.log((number + 0.5) >> 0)
+</script>
+
+<script id="monkey" type="monkey">
+  var m = +prompt("sum of monkey")
+  var n = +prompt("number")
+  var count = 0;
+  var arr = []
+  for (let i = 0; i < m; i++) {
+    arr[i] = {
+      flag: 1,
+      number: i + 1,
+    }
+  }
+
+  var j = 0;
+  for(let i = 0; i < m - 1; i++) {
+    while(true) {
+      j %= m;
+      if (arr[j].flag == 1) {
+        count++;
+      }
+      if (count == n) {
+        arr[j].flag = 0;
+        count=0;
+        break;
+      }
+      j++;
+    }
+  }
+
+  for (x of arr) {
+    if (x.flag == 1) {
+      console.log(x.number);
+      break;
+    }  
+  }
+</script>
+
+<script id="number" type="number">
+  var str_1 = prompt();
+  
+  var s2n = function(str_1) {
+    var s = '';
+    for (c of str_1) {
+      switch(c) {
+        case 'a':
+        case 'b':
+        case 'c':
+          s += '2';
+          break;
+        case 'd':
+        case 'e':
+        case 'f':
+          s += '3';
+          break;
+        case 'g':
+        case 'h':
+        case 'i':
+          s += '4';
+          break;
+        case 'j':
+        case 'k':
+        case 'l':
+          s += '5';
+          break;
+        case 'm':
+        case 'n':
+        case 'o':
+          s += '6';
+          break;
+        case 'p':
+        case 'q':
+        case 'r':
+        case 's':
+          s += '7';
+          break;
+        case 't':
+        case 'u':
+        case 'v':
+          s += '8';
+          break;
+        case 'w':
+        case 'x':
+        case 'y':
+        case 'z':
+          s += '9';
+          break;
+      }
+    }
+    return s;
+  }
+  console.log(s2n(str_1));
+</script>
+
+<script id="gougu" type="gougu">
+  for (let a = 1; a <= 998; a++) {
+    for (let b = a + 1; b <= 999; b++) {
+      let c = 1000 - a - b;
+      if (a * a + b * b == c * c) {
+        console.log(a, b, c)
+        break;
+      }
+    }
+  }
+</script>
+
+<script type="111">
+  var s = function(a, b) {
+    var a_1 = a;
+    var b_1 = b;
+    while (b != 0) {
+      [a, b] = [b, a % b];
+    }
+    return a_1 * b_1 / a;
+  }
+  var small = 1;
+  for (let i = 2; i <= 20; i++) {
+    small = s(small, i);
+  }
+  console.log(small);
+</script>
+
+<script type="111">
+  var s = prompt();
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == '-') {
+      var s_link = '';
+      for(let j = s[i-1].charCodeAt(0) + 1; j < s[i+1].charCodeAt(0); j++) {
+        s_link += String.fromCharCode(j);
+      }
+      s = s.substring(0, i) + s_link + s.substring(i + 1);
+    }
+  }
+  console.log(s);
+</script>
+
+<script type="sss">
+  var s = '\n';
+  for (let i = 1; i <= 9; i++) {
+    for (let j = 1; j <= i; j++) {
+      s += '' + j + ' * ' + i + ' = ' + i * j;
+      if (j != i) {
+        s += ' '
+      }
+    }
+    if (i != 9) {
+      s += '\n';
+    }
+  }
+  console.log(s);
+</script>
+
+<script id="cala" type="111">
+  var year = +prompt();
+  var month = +prompt();
+  var all_day = 0;
+  var all_day_1 = 0;
+  var calenda = '';
+  var isLeapYear = function(y) {
+        return (y % 400 == 0 || y % 4 == 0 && y % 100 != 0);
+        }
+  function getMonthDay(y, m) {
+    var m_d;
+    switch(m) {
+      case 4: 
+      case 6: 
+      case 9: 
+      case 11: 
+        m_d = 30;
+        break;
+      case 2: 
+        m_d = isLeapYear(y) ? 29 : 28;
+        break;
+      default :
+       m_d = 31;
+       break;
+    }
+    return m_d;
+  }
+  
+
+  all_day = (year - 1) * 365 + Math.floor((year-1) / 4) - Math.floor((year-1)/100) + Math.floor((year - 1) / 400);
+
+  for(let i = 1; i < month; i++) {
+    all_day += getMonthDay(year, i) + 1;
+  }
+
+  console.log((all_day) % 7);
+</script>
+
+<script>
+
+  var year = 2018;
+
+  var calenda = '';
+  var isLeapYear = function(y) {
+        return (y % 400 == 0 || y % 4 == 0 && y % 100 != 0);
+        }
+  function getMonthDay(y, m) {
+    var m_d;
+    switch(m) {
+      case 4: 
+      case 6: 
+      case 9: 
+      case 11: 
+        m_d = 30;
+        break;
+      case 2: 
+        m_d = isLeapYear(y) ? 29 : 28;
+        break;
+      default :
+       m_d = 31;
+       break;
+    }
+    return m_d;
+  }
+
+  function weekDate(year, month) {
+    var all_day = 0;
+    all_day = (year - 1) * 365 + Math.floor((year-1) / 4) - Math.floor((year-1)/100) + Math.floor((year - 1) / 400);
+    for (let i = 1; i < month; i++) {
+      all_day += getMonthDay(year, i);
+    }
+    all_day += 1;
+    return all_day % 7;
+  }
+  function print_cln(year, month) {
+    document.write('<table style="border: 1px solid black; font-family: monospace; font-size: 20px;">');
+    document.write('<caption>' + year + '-' + month + '</caption>');
+    document.write('<tr>');
+    document.write('<th>Sun</th>')
+    document.write('<th>Mon</th>')
+    document.write('<th>Tue</th>')
+    document.write('<th>Wed</th>')
+    document.write('<th>Thr</th>')
+    document.write('<th>Fra</th>')
+    document.write('<th>Sat</th></tr>')
+
+    var d = weekDate(year, month);
+    document.write('<tr>')
+    for (let i = 0; i < d; i++) {
+      document.write('<td style="text-align: center; border: 1px solid black;"></td>')
+    }
+    var getMd = getMonthDay(year, month);
+    for(let j = 1; j <= getMd; j++) {
+      document.write('<td style="text-align: center; border: 1px solid black;background-color: rgb(15, 56, 62); color: white;">' + j + '</td>');
+      if ((j + d) % 7 == 0 || j == getMd) {
+        document.write('</tr>')
+        if (j != getMd) {
+          document.write('<tr>');
+        }
+      }
+    }
+  }
+
+  for(let i = 1; i <= 12; i++) {
+    print_cln(year, i);
+  }
+
+  // function addSpace(n) {
+  //   var n = '' + n;
+  //   while(n.length < 3) {
+  //     n = ' ' + n;
+  //   }
+  //   return n;
+  // }
+
+  // function addTab(n, st) {
+  //   for (let i = 0; i < n; i++) {
+  //     st = st + '    ';
+  //   }
+  //   return st;
+  // }
+  // for(let i = 1; i <= 12; i++) {
+  //   var s = 'Sun Mon Tue Wed Thi Fra Sat\n';
+  //   var all_day;
+  //   var all;
+  //   for(let j = 1; j <= getMonthDay(year, i); j++) {
+
+  //     if (j == 1) {
+  //       all_day = (year - 1) * 365 + Math.floor((year-1) / 4) - Math.floor((year-1)/100) + Math.floor((year - 1) / 400);
+
+  //       for(let k = 1; k < i; k++) {
+  //         all_day = all_day + getMonthDay(year, k);
+  //       }
+
+  //       all = (all_day+1) % 7;
+  //       s = addTab(all, s);
+  //     }
+  //     if ((j + all - 1) % 7 == 6) {
+  //       s += addSpace(j) + '\n';
+  //     }else {
+  //       s += addSpace(j) + ' ';
+  //     }
+  //   }
+  //   console.log(s);
+  //   document.write("<p style='white-space: pre-wrap; font-family: monospace; float: left; margin: 20px;background-color: rgb(14, 54, 60);color: white;'>" + s + "</p>")
+  // }
+</script>
+
+<script type="hannoi">
+  function f(a, b, c, n) {
+    if (n == 1) {
+      console.log(a + '->' + c);
+    }else {
+      f(a, c, b, n-1);
+      f(a, b, c, 1);
+      f(b, a, c, n-1);
+    }
+  }
+  var n = +prompt();
+  f('A', 'B', 'C', n);
+</script>
+
+<script type="111">
+  function power(x, n) {
+    if (n == 1) {
+      return x;
+    }
+    if (n % 2 == 0) {
+      var m_result = power(x, n / 2);
+      return m_result * m_result;
+    }else {
+      var m_result = power(x, (n-1) / 2);
+      return x * m_result * m_result;
+    }
+  }
+  function power_1(x, n) {
+    var result = 1;
+    for(let i = 0; i < n; i++) {
+      result *= x;
+    }
+    return result;
+  }
+  function power_2(x, n) {
+    if (n == 1) {
+      return x;
+    }else {
+      return x * power_2(x, n-1);
+    }
+  }
+  console.log(power(5, 30));
+  console.log(power_1(5, 30));
+</script>
+
+<script type="posSum">
+  function find(num) {
+    var result = 0;
+    while (num) {
+      result += num % 10;
+      num = num / 10 >> 0;
+    }
+
+    if (result < 10) {
+      return result;
+    }else {
+      return find(result);
+    }
+  }
+  var a = 459;
+  console.log(find(a));
 </script>
 </head>
 <body>

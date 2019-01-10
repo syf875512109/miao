@@ -1,0 +1,23 @@
+<script>
+  document.write('<style>');
+  document.write('@keyframes foo { from {transform: rotatex(0deg) rotatey(0deg); } to {transform: rotatex(360deg) rotatey(360deg); } }')
+  document.write('div {height: 200px; width: 200px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; margin: auto; transform-style: preserve-3d; animation: foo 10s infinite linear; }');
+  document.write('div:hover { animation-play-state: paused;}');
+  document.write('aside { width: 20px; height: 20px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; margin: auto; }');
+  
+  var count = 0;
+  for(let i = 0; i < 12; i++) {
+    for(let j = 0; j < 12; j++) {
+      count++;
+      document.write('aside:nth-child(' + count + ') { transform: rotatex(' + (i * 30) +'deg) rotatey(' + (j * 30) + 'deg) translatez(200px); background-color: rgb(255, ' + 21 * i +', ' + 21 * j + ');}');
+    }
+  }
+  document.write('</style>')
+
+  document.write('<div>')
+  for (let i = 0; i < count; i++) {
+    document.write('<aside></aside>');
+  }
+  document.write('</div>')
+</script>
+

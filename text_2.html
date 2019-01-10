@@ -1,0 +1,626 @@
+<script type="111">
+  function Stack() {
+    let items = [];
+    this.push = function(elements) {
+      items.push(elements);
+      return items.length;
+    }
+    this.pop = function() {
+      let it = items.pop();
+      return it;
+    }
+    this.peek = function() {
+      return items[items.length - 1];
+    }
+    this.isEmpty = function() {
+      return items.length == 0;
+    }
+    this.clear = function () {
+      while(!isEmpty(items)) {
+        items.pop();
+      }
+    }
+    this.size = function() {
+      return items.length;
+    }
+    this.print = function() {
+      console.log(items.toString());
+    }
+  }
+</script>
+
+
+<script type="111">
+  class Stack {
+    constructor () {
+      this.items = [];
+    }
+
+    push(element) {
+      this.items.push(element);
+      return this.items.length;
+    }
+    pop() {
+      return this.items.pop();
+    }
+    peek() {
+      return this.items[this.items.length - 1];
+    }
+    isEmpty() {
+      return this.items.length == 0;
+    }
+    clear() {
+      this.items = [];
+    }
+    size() {
+      return this.items.length;
+    }
+    print() {
+      console.log(this.items.toString());
+    }
+  }
+</script>
+
+<script type="111">
+  let _item = Symbol();
+
+  class Stack {
+    constructor() {
+      this[_item] = [];
+    }
+    push(element) {
+      this[_item].push(element);
+      return this[_item].length;
+    }
+    pop() {
+      return this[_item].pop();
+    }
+    peek() {
+      return this[_item][this[_item].length - 1];
+    }
+    isEmpty() {
+      return this[_item] == 0;
+    }
+    clear() {
+      while(!this.isEmpty()) {
+        this.pop();
+      }
+    }
+    size() {
+      return this[_item].length;
+    }
+    print() {
+      console.log(this[_item].toString());
+    }
+  }
+</script>
+
+<script type="111">
+  
+  let Stack = (function() {
+  let items = new WeakMap();
+  
+  class Stack {
+    constructor() {
+      items.set(this, []);
+    }
+
+    push(element) {
+      let s = items.get(this);
+      s.push(element);
+      return s.length;
+    }
+    pop() {
+      let s = items.get(this);
+      return s.pop();
+    }
+    peek() {
+      let s = items.get(this);
+      return s[s.length - 1];
+    }
+    isEmpty() {
+      return items.get(this) == 0;
+    }
+    clear() {
+      let s = items.get(this);
+      while(!this.isEmpty()) {
+        this.pop();
+      }
+    }
+    size() {
+      return items.get(this).length;
+    }
+    print() {
+      console.log(items.get(this).toString());
+    }
+  }
+  return Stack;
+  })();
+  function change(num, base) {
+    if (base != 16) {
+      return num;
+    }
+    switch(num) {
+      case 0:
+        return '0';
+      case 1:
+        return '1';
+      case 2:
+        return '2';
+      case 3:
+        return '3';
+      case 4:
+        return '4';
+      case 5:
+        return '5';
+      case 6:
+        return '6';
+      case 7:
+        return '7';
+      case 8:
+        return '8';
+      case 9:
+        return '9';
+      case 10:
+        return 'a';
+      case 11:
+        return 'b';
+      case 12:
+        return 'c';
+      case 13:
+        return 'd';
+      case 14:
+        return 'e';
+      case 15:
+        return 'f';
+    }
+  }
+  function divideBy2(number, base = 2) {
+    let s = new Stack();
+    let binaryS = '';
+
+    while(number) {
+      s.push(String(change(number % base, base)));
+      number = number / base >> 0;
+    }
+
+    while(!s.isEmpty()) {
+      binaryS = binaryS + s.pop();
+    }
+    return binaryS;
+  }
+  
+  function parentheseChecker(symbols) {
+    let left = "([{", right = ")]}";
+    let sign;
+    let s = new Stack();
+    let flag = true;
+    let index = 0;
+    let top;
+    while(index < symbols.length && flag) {
+
+      if(left.includes(symbols[index])) {
+        s.push(symbols[index]);
+        console.log(`left symbol - ${symbols[index]}`);
+      }else {
+        if (s.isEmpty()) {
+          flag = false;
+          console.log('Stack is empty no more symbols to pop and compare');
+        }else {
+          top = s.pop();
+          if (!(left.indexOf(top) == right.indexOf(symbols[index]))) {
+            flag = false;
+            console.log(`poping sign ${top} - is not a maching compare ${symbols[index]}`);
+          }else {
+            console.log(`poping sign ${top} - maching compare ${symbols[index]}`);
+          }
+        }
+      }
+      index++;
+    }
+
+    if (flag && s.isEmpty()) {
+      return true;
+    }
+    return false;
+  }
+
+  parentheseChecker('{{([][])}()}');
+</script>
+
+<script id="MaxMoney" type = "111">
+  function maxMoney(nums) {
+    function find(x = 0, y = 0) {
+      if (x == nums.length - 1) {
+        return nums[x][y];
+      }else {
+        return nums[x][y] + Math.max(find(x + 1, y), find(x + 1, y + 1));
+      }
+    }
+    console.log(find());
+  }
+  let nums = [
+    [2],
+    [1, 4],
+    [7, 4, 7],
+    [3, 9, 8, 5],
+    [3, 6, 8, 0, 7],
+]
+maxMoney(nums);
+</script>
+
+<script id="" type="111">
+  function prN(n) {
+    if (n < 10) {
+      console.log(n);
+      return;
+    }
+    console.log(n % 10);
+    prN(n / 10 >> 0);
+  }
+  prN(12345);
+</script>
+
+<script type="print">
+  function printN(n) {
+    let m = +prompt();
+    if (n != 1) {
+      printN(n - 1);
+    }
+    console.log(m);
+  }
+  printN(5);
+</script>
+
+<script id="sort" type="sort">
+  function sortArray(arr) {
+    let flag;
+    for(let i = 0; i < arr.length - 2; i++) {
+      flag = 0;
+      for (let j = 0; j < arr.length - i - 2; j++) {
+        if (arr[j] > arr[j+1]) {
+          arr[j] = arr[j] ^ arr[j+1];
+          arr[j+1] = arr[j] ^ arr[j+1];
+          arr[j] = arr[j] ^ arr[j+1];
+
+          flag = 1;
+        }
+      }
+      if (!flag) {
+        break;
+      }
+    }
+  }
+  let array = [84, 97, 95, 27, 22, 1, 41, 48, 90, 64]
+  sortArray(array);
+  console.log(array);
+</script>
+
+<script type="111">
+  var search = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    let mid = (left + right) / 2 >> 0;
+    while(nums[mid] != target && left < right) {
+        if (nums[mid] > target) {
+            max = mid - 1;
+        }else {
+            min = mid + 1;
+        }
+        mid = (left + right) / 2 >> 0;
+    }
+    
+    if (nums[mid] == target) {
+        return mid;
+    }
+    return -1;
+  };
+  let arr = [-1,0,3,5,9,12];
+  debugger;
+  console.log(search(arr, 9));
+</script>
+
+<script type="111">
+  function aray2list(ary) {
+    if (ary.length == 0) {
+      return null;
+    }
+
+    let current = {
+      value: ary[0],
+      next: null,
+    }, head = current;
+    for(let i = 1; i < ary.length; i++) {
+      var node = {
+        value: ary[i],
+        next: null,
+      }
+      current.next = node;
+      current = node;
+    }
+    return head;
+  }
+
+  function arrayTolistRecusive(ary) {
+    if (ary.length == 0) {
+      return null;
+    }
+
+    let node = {
+      value: ary[0],
+      next: arrayTolistRecusive(ary.slice(1)),
+    }
+
+    return node;
+  }
+
+  function listToArray(head) {
+    let current = head;
+    let arr = [];
+
+    while(current) {
+      arr.push(current.value);
+      current = current.next;
+    }
+    return arr;
+  }
+  function listToArrayRecusive(head, arr = []) {
+
+    if (head == null) {
+      return;
+    }
+
+    arr.push(head.value);
+    listToArrayRecusive(head.next, arr);
+
+    return arr;
+  }
+
+  function lToR(head) {
+    if (head == null) {
+      return [];
+    }
+
+    let currentValue = head.value;
+    let arr = lToR(head.next);
+    arr.unshift(currentValue);
+    return arr;
+  }
+
+  function prepend(val, head) {
+    let node = {};
+    node.value = val;
+    node.next = head;
+    head = node;
+
+    return head;
+  }
+
+  function append(val, head) {
+    let current = head;
+    while (head.next) {
+      head = head.next;
+    }
+    let node = {
+      value: val,
+      next: null,
+    }
+    head.next = node;
+    return current;
+  }
+  let l = aray2list([1, 2, 3, 4]);
+
+  function nth(head, n) {
+    if (n < 0) {
+      return -1;
+    }
+
+    let p = head;
+    let count = 0;
+    while(p) {
+      if (count == n) {
+        return p.value;
+      }
+      count++;
+      p = p.next;
+    }
+    return -1;
+  }
+
+  function arrayToListRecusive(arr, start = 0) {
+    if (arr.length == start) {
+      return null;
+    }
+    let head = {
+      val: arr[start],
+      next: arrayToListRecusive(arr, start + 1),
+    }
+
+    return head;
+  }
+</script>
+
+<script type="111">
+  function LinkedList() {
+    let Node = function(element) {
+      this.val = element;
+      this.next = null;
+    }
+
+    let length = 0;
+    let head = null;
+
+    this.append = function(element) {
+      let newN = new Node(element);
+      
+      if (head == null) {
+        head = newN;
+      }else {
+        let present = head;
+        while(present.next) {
+          present = present.next;
+        }
+        present.next = newN;
+        
+      }
+      length++;
+      return length;
+    }
+    this.insert = function(position, element) {
+
+      let newN = new Node(element);
+      if (position < 0 || position >= length) {
+        return false;
+      }
+      let present = head;
+      let count = 0;
+      let prev;
+      if(position == 0) {
+        newN.next = head;
+        head = newN;
+      }else {
+        while(count < position) {
+          prev = present;
+          present = present.next;
+          count++;
+        }
+        newN.next = prev.next;
+        prev.next = newN;
+      }
+      length++;
+      return true;
+    }
+
+    this.remove = function(element) {
+      
+      if (head == null) {
+        return;
+      }else if (head.val == element) {
+        head = head.next;
+        length--;
+        return;
+      }
+      let present = head;
+      let prev;
+      while(present.next) {
+        prev = present;
+        present = present.next;
+        if (present.val == element) {
+          prev.next = present.next;
+          length--;
+          return;
+        }
+      }
+    }
+
+    this.indexOf = function (element) {
+      let present = head;
+      let count = 0;
+
+      while(present) {
+        if (present.val == element) {
+          return count;
+        }
+        present = present.next;
+        count++;
+      }
+      return -1;
+    }
+
+    this.removeAt = function(position) {
+      if (position < 0 || position > length - 1) {
+        return undefined;
+      }
+      if (position == 0) {
+        let items = head.val;
+        head = head.next;
+
+      }
+      let present = head;
+      let count = 0;
+      let prev, items;
+      while(count < position) {
+        prev = present;
+        present = present.next;
+        count++;
+      }
+      items = present.val;
+      prev.next = present.next;
+      length--;
+      return items;
+    }
+
+    this.isEmpty = function() {
+      return length == 0;
+    }
+    
+    this.length = function() {
+      return length;
+    }
+
+    this.toString = function() {
+      let s = '';
+      let present = head;
+      while(present) {
+        s = s + present.val;
+        if(present.next != null) {
+          s = s + '\n';
+        }
+        present = present.next
+      }
+      return s;
+    }
+
+
+  }
+</script>
+
+<script type="11">
+function aray2list(ary) {
+    if (ary.length == 0) {
+      return null;
+    }
+
+    let current = {
+      value: ary[0],
+      next: null,
+    }, head = current;
+    for(let i = 1; i < ary.length; i++) {
+      var node = {
+        value: ary[i],
+        next: null,
+      }
+      current.next = node;
+      current = node;
+    }
+    return head;
+  }
+
+  var middleNode = function(head) {
+    let current = head;
+    let p = head;
+    let count = 0;
+    while (current) {
+        count++;
+        current = current.next;
+    }
+    count = (count / 2 >> 0) + 1;
+    
+    while(count > 1) {
+        p = p.next;
+        count--;
+    }
+    
+    return p;
+};
+
+let l1 = aray2list([1, 2, 4]);
+let l2 = aray2list([1, 2, 3, 4, 5]);
+debugger;
+middleNode(l2);
+
+</script>
+
+<script>
+
+</script>

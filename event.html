@@ -1,5 +1,8 @@
 <script>
-  var JOURNAL = [
+
+'use strict';
+
+var journal = [
   {"events":["carrot","exercise","weekend"],"squirrel":false},
   {"events":["bread","pudding","brushed teeth","weekend","touched tree"],"squirrel":false},
   {"events":["carrot","nachos","brushed teeth","cycling","weekend"],"squirrel":false},
@@ -92,25 +95,39 @@
   {"events":["cauliflower","peanuts","brushed teeth","weekend"],"squirrel":false}
 ];
 
+// This makes sure the data is exported in node.js —
+// `require('./path/to/journal.js')` will get you the array.
+if (typeof module != "undefined" && module.exports && (typeof window == "undefined" || window.exports != exports))
+  module.exports = JOURNAL;
+if (typeof global != "undefined" && !global.JOURNAL)
+  global.JOURNAL = JOURNAL;
+// function addEntry(events, didTurnIntoASquirrel) {
+//   journal.push({
+//     events: events,
+//     squirrel: didTurnIntoASquirrel,
+//   });
+// }
+
+// addEntry(["work", "touched tree", "pizza", "running", "television"], false);
+// addEntry(["work", "ice cream", "cauliflower", "lasagna", "touched tree", "brushed teeth"], false);
+// addEntry(["weekend", "cycling", "break", "peanuts", "beer"], true);
+
 function phi(table) {
-  return ((table[3]*table[0] - table[1] * table[2]) 
-          /
-          (Math.sqrt((table[0] + table[1]) * (table[0] + table[2]) * 
-          (table[1] + table[3]) * (table[2] + table[3]))
-          ));
+  return ((table[0] * table[3] -table[1] * table[2]) / 
+           Math.sqrt(
+           (table[2] + table[3]) * (table[0] + table[1]) * (table[1] + table[3]) * (table[0] + table[2])
+           ))
 }
+
 function hasEvent(event, entry) {
   return entry.events.indexOf(event) != -1;
 }
 
 function tableFor(event, journal) {
   var table = [0, 0, 0, 0];
-  
   for (let i = 0; i < journal.length; i++) {
-    var index = 0;
-    var entry = journal[i];
-
-    if(hasEvent(event, entry)) {
+    var entry = journal[i], index = 0;
+    if (hasEvent(event, entry)) {
       index += 1;
     }
     if (entry.squirrel) {
@@ -121,37 +138,28 @@ function tableFor(event, journal) {
   return table;
 }
 
-function deposit(journal) {
-  var map = {};
-  for(let i = 0; i < journal.length; i++) {
-    var entry = journal[i];
-    for(let j = 0; j < entry.events.length; j++) {
-      if (!(entry.events[j] in map)) {
-        map[entry.events[j]] = phi(tableFor(entry.events[j], JOURNAL));
-      }
+var map = {};
+function storePhi(event, phi) {
+  map[event] = phi;
+}
+
+for (let i = 0; i < journal.length; i++) {
+  var entry = journal[i];
+  if (hasEvent('peanuts', entry) && !hasEvent('brushed teeth', entry)) {
+    entry.events.push("peanut notTeeth");
+  }
+}
+
+for (let i = 0; i < journal.length; i++) {
+  for(let j = 0; j < journal[i].events.length; j++) {
+    if (!(journal[i].events[j] in map)) {
+      var p = phi(tableFor(journal[i].events[j], journal));
+      storePhi(journal[i].events[j], p);
     }
   }
-  return map;
 }
 
-for(let i = 0; i < JOURNAL.length; i++) {
-  var entry = JOURNAL[i];
-  if(hasEvent('peanuts', entry) && !(hasEvent('brushed teeth', entry))) {
-    entry.events.push('peanuts and not brush');
-  }
-}
-var m = deposit(JOURNAL);
-console.log(m['peanuts and not brush']);
 
-var addEntry = function(squr) {
-  var entry = {
-    events: [],
-    squirrel: squr,
-  }
 
-  for(let i = 1; i < arguments.length; i++) {
-    entry.events.push(arguments[i]);
-  }
-  JOURNAL.push(entry);
-}
+console.log(phi(tableFor("peanut notTeeth", journal)));
 </script>
