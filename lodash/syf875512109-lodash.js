@@ -13,7 +13,7 @@ var syf875512109 = (function(){
       }
     }
 
-    if (result.length != 0)
+    if (current.length != 0)
       result.push(current);
 
     return result;
@@ -24,7 +24,7 @@ var syf875512109 = (function(){
     let j = 0;
     for(let i = 0; i < array.length; i++) {
       temp = array[i];
-      if (!temp) {
+      if (temp) {
         arr[j++] = temp;
       }
     }
@@ -63,5 +63,7 @@ var syf875512109 = (function(){
   return {
     compact: compact,
     chunk: chunk,
+    concat: concat,
+    difference: difference,
   }
 })()
