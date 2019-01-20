@@ -1,0 +1,160 @@
+<script>
+  function Node(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+  }
+  function ary2tree(ary, rootPos = 0) {
+    if (ary.length == 0) {
+      return null;
+    }
+    if (rootPos > ary.length - 1) {
+      return null;
+    }
+    if (ary[rootPos] == null) {
+      return null;
+    }
+    let newNode = new Node(ary[rootPos]);
+    newNode.left = ary2tree(ary, rootPos * 2 + 1);
+    newNode.right = ary2tree(ary, rootPos * 2 + 2);
+
+    return newNode;
+  }
+
+  function tree2ary(root, rootPos = 0, ary = []) {
+    if (root == null) {
+      return ary;
+    }
+    ary[rootPos] = root.val;
+    tree2ary(root.left, 2 * rootPos + 1, ary);
+    tree2ary(root.right, 2 * rootPos + 2, ary);
+
+    return ary;
+  }
+
+  function ary2treeLC(ary) {
+    if (ary.length == 0) {
+      return null;
+    }
+    let newNode = new Node(ary[0]);
+  }
+
+  function inOrderTraverse(root) {
+    if (root) {
+      inOrderTraverse(root.left);
+      console.log(root.val);
+      inOrderTraverse(root.right);
+    }
+  }
+
+  
+  function postOrderTraverse(root) {
+    if (root) {
+      postOrderTraverse(root.left);      
+      postOrderTraverse(root.right);
+      console.log(root.val);
+    }
+  }
+
+  function insertIntoBST(bst, val) {
+    if (bst == null) {
+      bst = new Node(val);
+      return bst;
+    }
+    if (bst.val > val) {
+      bst.left = insertIntoBST(bst.left, val);
+    }else {
+      bst.right = insertIntoBST(bst.right, val);
+    }
+
+    return bst;
+  }
+
+  function mergeSort(ary) {
+    if (ary.length < 2) {
+      return ary;
+    }
+    let mid = ary.length >> 1;
+    let sortedLeft = mergeSort(ary.slice(0, mid));
+    let sortedRight = mergeSort(ary.slice(mid));
+
+    let result = [];
+    let i = 0, j = 0;
+    while(i < sortedLeft.length || j < sortedRight.length) {
+      if (j >= sortedRight.length || sortedLeft[i] < sortedRight[j]) {
+        result.push(sortedLeft[i++]);
+      }else {
+        result.push(sortedRight[j++]);
+      }
+    }
+    return result;
+  }
+  
+  function quickSort(ary) {
+    if (ary.length < 2) {
+      return ary;
+    }
+
+    let mid = ary.length >> 1;
+    let samp = ary[mid];
+
+    let samllary = [];
+    let bigerary = [];
+    let equalary = [];
+    for(let i = 0; i < ary.length; i++) {
+      if (ary[i] < samp) {
+        samllary.push(ary[i]);
+      }else if (ary[i] > samp){
+        bigerary.push(ary[i]);
+      }else {
+        equalary.push(ary[i]);
+      }
+    }
+    let smallSorted = quickSort(samllary);
+    let bigerSorted = quickSort(bigerary);
+    let result = [];
+    result.push(...smallSorted, ...equalary, ...bigerSorted);
+
+    return result;
+  }
+
+  function quickSortTest(arr, left = 0, right = arr.length - 1) {
+
+    if (left >= right) {
+      return;
+    }
+    let start = left;
+    let end = right;
+
+    let pivot = arr[left];
+    let flag = 1;
+    while(start < end) {
+      if (flag){
+        while(arr[end] >= pivot && end > start) {
+          end--;
+        }
+        if (end > start) {
+          arr[start] = arr[end];
+          flag = 0;
+          start++;
+        }
+      }else {
+        while(arr[start] < pivot && end > start) {
+          start++;
+        }
+        if (end > start) {
+          arr[end] = arr[start];
+          flag = 1;
+          end--;
+        }
+      }
+    }
+    arr[start] = pivot;
+    quickSortTest(arr, left, start - 1);
+    quickSortTest(arr, start + 1, right);
+
+    return arr;
+  }
+
+  
+</script>

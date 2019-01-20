@@ -1,0 +1,120 @@
+<script type="111">
+  function Set() {
+    let items = {};
+
+    // this.has = function(value) {
+    //   return value in items;
+    // };
+    this.has = function(value) {
+      return items.hasOwnProperty(value);
+    }
+    this.add = function(value) {
+      if (!this.has(value)) {
+        items[value] = value;
+        return true;
+      }
+      return false;
+    }
+
+    this.remove = function(value) {
+      if (this.has(value)) {
+        delete items[value];
+        return true;
+      }
+      return false;
+    }
+
+    this.clear = function() {
+      items = {};
+    }
+
+    // this.size = function() {
+    //   return Object.keys(items).length;
+    // }
+    this.size = function() {
+      let count = 0;
+      for(let x in items) {
+        if (items.hasOwnProperty(x)) {
+          count++;
+        }
+      }
+      return count;
+    }
+    this.print = function() {
+      console.log(items);
+    }
+
+    this.values = function() {
+      let values = [];
+      for (let key in items) {
+        if (items.hasOwnProperty(key)) {
+          values.push(items[key]);
+        }
+      }
+      return values;
+    }
+
+    this.union = function(otherSet) {
+      let unionSet = new Set()
+
+      let values = this.values();
+      for (let val of values) {
+        unionSet.add(val);
+      }
+
+      values = otherSet.values();
+      for (let val of values) {
+        unionSet.add(val);
+      }
+
+      return unionSet;
+    }
+
+    this.intersection = function(otherSet) {
+      let inserSet = new Set();
+      let val;
+      let otherval = otherSet.values();
+      val = this.values().filter(items => {
+        if (otherval.includes(items)) {
+          return true;
+        }
+        return false;
+      });
+
+      return val;
+    }
+
+    this.difference = function(otherSet) {
+      let diffSet = new Set()
+
+      let val = otherSet.values();
+
+      for (let v of this.values()) {
+        if (!val.includes(v)) {
+          diffSet.add(v);
+        }
+      }
+      return diffSet;
+    }
+
+    this.subSet = function(otherSet) {
+      if (this.size() > otherSet.size()) {
+        return false;
+      }else {
+        let val1 = this.values();
+        for (let x of val1) {
+          if (!otherSet.has(x)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+  }
+
+</script>
+
+
+<script id="ES6CLASS">
+  
+</script>

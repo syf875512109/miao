@@ -327,7 +327,7 @@ maxMoney(nums);
     }
 
     let current = {
-      value: ary[0],
+      val: ary[0],
       next: null,
     }, head = current;
     for(let i = 1; i < ary.length; i++) {
@@ -582,12 +582,12 @@ function aray2list(ary) {
     }
 
     let current = {
-      value: ary[0],
+      val: ary[0],
       next: null,
     }, head = current;
     for(let i = 1; i < ary.length; i++) {
       var node = {
-        value: ary[i],
+        val: ary[i],
         next: null,
       }
       current.next = node;
@@ -621,6 +621,471 @@ middleNode(l2);
 
 </script>
 
-<script>
+<script type="111">
+  function bubblesort(array) {
+    let sorted = false;
+    let length = array.length;
+    let temp;
+    while(!sorted) {
+      sorted = true;
+      for(let i = 0; i < length - 1; i++) {
+        if (array[i] > array[i+1]) {
+          temp = array[i];
+          array[i] = array[i + 1];
+          array[i + 1] = temp; 
 
+          flag = false;
+        }
+      }
+      length--;
+    }
+  }
+
+  function selectSort(array) {
+    let index;
+    let temp;
+
+    for(let i = 0; i  < array.length - 1; i++) {
+      index = i;
+      for (j = i + 1; j < array.length; j++) {
+        if (array[j] < array[index]) {
+          index = j;
+        }
+      }
+
+      if (index != i) {
+        temp = array[index];
+        array[index] = a[i];
+        array[i] = temp;
+      }
+    }
+    return array;
+  }
+  function hailstones(n) {
+    let arr = [n];
+    while (n > 1) {
+      arr.push(n = (n % 2 == 0) ? n / 2 >> 0 : n * 3 + 1);
+    }
+
+    return arr;
+  }
+  
+  function addArray(arr, n = arr.length - 1) {
+    return n < 0 ? 0 : arr[n] + addArray(arr, n - 1);
+  }
+
+  // Divide and conquer
+  function addArrayDivide(arr, lo, hi) {
+    if (lo == hi) {
+      return arr[lo];
+    }
+    let mid = (lo + hi) >> 1;
+
+    return addArrayDivide(arr, lo, mid) + addArrayDivide(arr, mid + 1, hi);
+  }
+  function max2(arr, lo = 0, hi = arr.length) {
+    let x1, x2;
+    if (arr[x1 = lo] < arr[x2 = lo + 1]) {
+      x1 = x1 ^ x2;
+      x2 = x1 ^ x2;
+      x1 = x1 ^ x2;
+    }
+
+    for(let i = lo + 2; i < hi; i++) {
+      if (arr[i] > x2) {
+        if (arr[x2 = i] > arr[x1]) {
+          x1 = x1 ^ x2;
+          x2 = x1 ^ x2;
+          x1 = x1 ^ x2;
+        }
+      }
+    }
+    console.log(x1, arr[x1], x2, arr[x2])
+  }
+
+  function max2Divide(arr, lo, hi) {
+
+    let x1, x2;
+
+    if (lo + 1 == hi) {
+      return [lo, hi - 1];
+    }
+
+    if (lo + 2 == hi) {
+      return arr[lo] > arr[lo + 1] ? [lo, lo + 1] : [lo + 1, lo];
+    }
+
+    if (lo + 3 == hi) {
+      if (arr[x1 = lo] < arr[x2 = lo + 1]) {
+        x1 = lo + 1;
+        x2 = lo;
+      }
+      if (arr[lo + 2] > arr[x2]) {
+        if (arr[x2 = lo + 2] > arr[x1]) {
+          x1 = x1 ^ x2;
+          x2 = x1 ^ x2;
+          x1 = x1 ^ x2;
+        }
+      }
+
+      return [x1, x2];
+    }
+
+
+    let mid = (lo + hi) >> 1;
+    let x1L, x2L, x1R, x2R;
+    
+    [x1L, x2L] = max2Divide(arr, lo, mid);
+    [x1R, x2R] = max2Divide(arr, mid, hi);
+
+    if (arr[x1L] > arr[x1R]) {
+      x1 = x1L;
+      x2 = arr[x1R] > arr[x2L] ? x1R : x2L;
+    }else {
+      x1 = x1R;
+      x2 = arr[x1L] > arr[x2R] ? x1L : x2R;
+    }
+    return [x1, x2];
+  }
+
+
+  function longCommonSub(s1, n, s2, m, count = 0) {
+    if (n < 0 || m < 0) {
+      return count;
+    }
+
+    if (s1[n] == s2[m]) {
+      count++;
+      return longCommonSub(s1, n - 1, s2, m - 1, count);
+    }
+
+    return Math.max(longCommonSub(s1, n, s2, m - 1, count), longCommonSub(s1, n - 1, s2, m, count));
+  }
+
+  function longCommonSubTwo(s1, s2) {
+    let s1Len = s1.length,
+        s2Len = s2.length;
+
+    let arr = new Array(s1Len);
+
+
+    for(let i = 0; i < s1Len; i++) {
+      arr[i] = [];
+      for(let j = 0; j < s2Len; j++) {
+        if (i == 0 || j == 0) {
+          arr[i][j] = s1[i] == s2[j] ? 1 : 0;
+        }else {
+          arr[i][j] = s1[i] == s2[j] ? arr[i - 1][j-1] + 1 : Math.max(arr[i - 1][j], arr[i][j - 1]);
+        }
+      }
+    }
+    return arr[s1Len - 1][s2Len - 1];
+  }
+</script>
+
+<script>
+  function isSorted(ary) {
+    if (ary.length < 2) {
+      return true;
+    }
+    for(let i = 1; i < ary.length; i++) {
+      if (ary[i] < ary[i - 1]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function TreeNode(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  }
+
+  function ary2Tree(ary, rootPos = 0) {
+    if (ary.length == 0 || ary.length <= rootPos || ary[rootPos] == null) {
+      return null;
+    }
+
+    let newNode = new TreeNode(ary[rootPos]);
+    newNode.left = ary2Tree(ary, rootPos * 2 + 1);
+    newNode.right = ary2Tree(ary, rootPos * 2 + 2);
+
+    return newNode;
+  }
+
+  function tree2Ary(root, rootPos = 0, result = []) {
+    if (!root) {
+      result[rootPos] = null;
+      return result;
+    }
+    result[rootPos] = root.val;
+    if (root.left)
+      tree2Ary(root.left, rootPos * 2 + 1, result);
+    if (root.right)
+      tree2Ary(root.right, rootPos * 2 + 2, result);
+
+    return result;
+  }
+
+  function ary2TreeLc(ary) {
+    if (ary.length == 0) {
+      return null;
+    }
+    let root = new TreeNode(ary[0]);
+    let help = [root];
+    let flag = 1;
+    let index = 0, i = 1;
+    let node, current;
+
+    while(i < ary.length) {
+      current = help[index];
+      if (ary[i] != null) {
+        node = new TreeNode(ary[i]);
+        help.push(node);
+      }else {
+        node = null;
+      }
+      i++;
+      if (flag) {
+        current.left = node;
+        flag = 0;
+      }else {
+        current.right = node;
+        flag = 1;
+        index++;
+      }
+    }
+    return root;
+  }
+
+  function preOrderTranverse(root, action) {
+    if (root) {
+      action(root.val);
+      preOrderTranverse(root.left, action);
+      preOrderTranverse(root.right, action);
+    }
+  }
+  
+  function inOrderTranverse(root, action = console.log) {
+    if (root) {
+      inOrderTranverse(root.left, action);
+      action(root.val);
+      inOrderTranverse(root.right, action);
+    }
+  }
+
+  function postOrderTranverse(root, action) {
+    if (root) {
+      postOrderTranverse(root.left, action);
+      postOrderTranverse(root.right, action);
+      action(root.val);
+    }
+  }
+
+  function tree2AryLc(root) {
+    if (!root) {
+      return [];
+    }
+    let result = [];
+    let help = [root];
+
+    let index = 0,
+        current;
+    result.push(root.val);
+
+    while(index < help.length) {
+      current = help[index];
+
+      if (current.left) {
+        help.push(current.left);
+        result.push(current.left.val);
+      }else {
+        result.push(null);
+      }
+      
+      if (current.right) {
+        help.push(current.right);
+        result.push(current.right.val);
+      }else {
+        result.push(null);
+      }
+
+      index++;
+    }
+
+    return result;
+  }
+
+  function insertIntoBST(bst, val) {
+    if (!bst) {
+      bst = new TreeNode(val);
+      return bst;
+    }
+    if (val < bst.val) {
+      bst.left = insertIntoBST(bst.left, val);
+    }else {
+      bst.right = insertIntoBST(bst.right, val);
+    }
+
+    return bst;
+  }
+
+  function bstSort(ary) {
+
+    let bst = ary.reduce(insertIntoBST, null);
+    // let bst = null;
+    // for (let val of ary) {
+    //   bst = insertIntoBST(bst, val);
+    // }
+    
+    let result = [];
+
+    inOrderTranverse(bst, item => {
+      result.push(item);
+    });
+
+    return result;
+  }
+
+  function mergeSort(ary) {
+    if (ary.length < 2) {
+      return ary;
+    }
+
+    let mid = ary.length >> 1;
+    let leftSorted = mergeSort(ary.slice(0, mid));
+    let rightSorted = mergeSort(ary.slice(mid));
+
+    let i = 0, j = 0;
+    let result = []
+    while (i < leftSorted.length || j < rightSorted.length) {
+      if (j >= rightSorted.length || (i < leftSorted.length && leftSorted[i] < rightSorted[j])) {
+        result.push(leftSorted[i++]);
+      }else {
+        result.push(rightSorted[j++]);
+      }
+    }
+
+    return result;
+  }
+
+  function quickSort1(ary) {
+    if (ary.length < 2) {
+      return ary;
+    }
+    let mid = ary.length >> 1;
+
+    let smallAry = [];
+    let equalAry = [];
+    let bigAry = [];
+    for (let val of ary) {
+      if (val < ary[mid]) {
+        smallAry.push(val);
+      }else if (val > ary[mid]) {
+        bigAry.push(val);
+      }else {
+        equalAry.push(val);
+      }
+    }
+
+    let smallSorted = quickSort1(smallAry);
+    let bigSorted = quickSort1(bigAry);
+
+    let result = [...smallSorted, ...equalAry, ...bigSorted];
+
+    return result;
+  }
+
+  function swap(ary, i, j) {
+    let temp = ary[i];
+    ary[i] = ary[j];
+    ary[j] = temp;
+  }
+  function quickSort2(ary, left = 0, right = ary.length - 1) {
+    if (left >= right) {
+      return;
+    }
+    let pivotIndex = Math.floor(Math.random() * (right - left + 1) + left);
+    let pivot = ary[pivotIndex];
+
+    swap(ary, pivotIndex, right);
+    let i, j;
+    for(i = left, j = left; j < right; j++) {
+      if (ary[j] < pivot) {
+        swap(ary, i, j);
+        i++;
+      }
+    }
+
+    swap(ary, i, right);
+
+    quickSort2(ary, left, i - 1);
+    quickSort2(ary, i + 1, right);
+
+    return ary;
+  }
+
+  function quickSort3(ary, left = 0, right = ary.length - 1) {
+    if (left >= right) {
+      return;
+    }
+    let pivot = ary[left];
+    let flag = 1;
+
+    let start = left + 1, end = right;
+
+    while(start < end) {
+      if (flag) {
+        while (start < end && ary[end] > pivot) {
+          end--;
+        }
+        if (start < end) {
+          ary[start] = ary[end];
+          start++;
+        }
+      }else {
+        while (start < end && ary[start] < pivot) {
+          start++;
+        }
+        if (start < end) {
+          ary[end] = ary[start];
+          end--;
+        }
+      }
+    }
+    ary[start] = pivot;
+    quickSort3(ary, left, start - 1);
+    quickSort3(ary, start + 1, right);
+
+    return ary;
+  }
+
+  function preOrderTranverseAry(root) {
+    if (!root) {
+      return [];
+    }
+    let result = [];
+    let stack = [];
+    let current = root;
+
+    result.push(current.val);
+    while (current || stack.length != 0) {
+      
+      if (current.right) {
+        stack.push(current.right);
+      }
+
+      if (current.left) {
+        result.push(current.left.val);
+        current = current.left;
+      }else {
+        current = stack.pop();
+        if (current) {
+          result.push(current.val);
+        }
+      }
+    }
+
+    return result;
+  }
 </script>
