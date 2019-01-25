@@ -1,0 +1,63 @@
+<script type = "111">
+  function MySet() {
+    this.s = new Map();
+    this.len = 0;
+  }
+
+  MySet.prototype.add = function(item) {
+    if (!this.s.has(item)) {
+      this.s.set(item, item);
+      this.len++;
+    }
+  }
+  MySet.prototype.delete = function(item) {
+    if (this.s.has(item)) {
+      this.s.delete(item);
+      this.len--;
+      return true;
+    }else {
+      return false;
+    }
+  }
+  MySet.prototype.has = function(item) {
+    return this.s.has(item);
+  }
+  // MySet.prototype.size = function() {
+  //   return thsi.len;
+  // }
+  Object.defineProperty(MySet.prototype, 'size', {
+    get: function() { return this.len; }
+  })
+</script>
+
+<script type="Vector">
+  function Vector(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  Vector.prototype.plus = function(vec) {
+    let x1 = this.x + vec.x;
+    let y1 = this.y + vec.y;
+
+    return new Vector(x1, y1);
+  }
+  Vector.prototype.minus = function(vec) {
+    return new Vector(this.x - vec.x, this.y - vec.y);
+  }
+  Object.defineProperty(Vector.prototype, 'length', {
+    get: function() {return Math.sqrt(this.x * this.x + this.y * this.y); }
+  })
+</script>
+
+<script>
+  function LinkedList() {
+    
+  }
+  LinkedList.prototype.Node = function(val) {
+    this.val = val;
+    this.next = null;
+  }
+  LinkedList.prototype.append = function(val) {
+
+  }
+</script>
