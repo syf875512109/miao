@@ -71,7 +71,7 @@ var syf875512109 = (function(){
 
   function dropRight(array, num = 1) {
     let result = array.slice();
-    let i = 0; i < num && result.length != 0; i++) {
+    for (let i = 0; i < num && result.length != 0; i++) {
       result.pop();
     }
 
