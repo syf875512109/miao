@@ -1,4 +1,4 @@
-<script>
+<script type="111">
   var JOURNAL = [
   {"events":["carrot","exercise","weekend"],"squirrel":false},
   {"events":["bread","pudding","brushed teeth","weekend","touched tree"],"squirrel":false},
@@ -154,4 +154,85 @@ var addEntry = function(squr) {
   }
   JOURNAL.push(entry);
 }
+</script>
+
+<style>
+  table {
+    font-family: monospace;
+    font-size: 40px;
+    border-collapse: collapse;
+  }
+  table td {
+    width: 100px;
+    text-align: center;
+  }
+
+  table tbody tr td:first-child {
+    color: green;
+  }
+  table tr {
+    border: 1px solid black;
+  }
+  .string {
+    color: rgb(196, 26, 22)
+  }
+  .number {
+    color: rgb(28, 0, 207)
+  }
+  .nail {
+    color: rgb(128, 128, 128)
+  }
+</style>
+
+<script>
+
+  function getRow(tem) {
+    if (typeof tem === 'string') {
+      return `<span class="string">"${tem}"</span>`
+    }else if (typeof tem === 'number') {
+      return `<span class="number">${tem}</span>`
+    }else if (typeof tem === 'undefined' || tem === null) {
+      return `<span class="nail">${tem}</span>`
+    }
+    return tem
+  }
+  function drawTable(ary) {
+    'use strict';
+    let s = new Set()
+
+    for (let item of ary) {
+      for (let key in item) {
+        s.add(key);
+      }
+    }
+
+    let str = '<table><thead><tr><th>index</th>'
+    
+    for (let key of s) {
+      str += `<th>${key}</th>`
+    }
+
+    str += '</tr></thead><tbody>'
+    let i = 0
+
+    for (let num of ary) {
+      str += '<tr>'
+      str += `<td>${i++}</td>`
+      for (let key of s) {
+        if (key in num){
+          key = getRow(num[key])
+          str += `<td>${key}</td>`
+        }else {
+          str += `<td></td>`
+        }
+      }
+      str += '</tr>'
+    }
+
+    str += '</tbody></table>';
+
+    return str;
+  }
+
+  document.write(drawTable([{a: 1, b: "2", c: null}, {c: undefined, a: 3, b: 4}, {b: 6, a: 5, c: 10}]));
 </script>

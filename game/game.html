@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Game</title>
+
+  <style>
+    #id-canvas {
+      border: 1px solid black;
+    }
+  </style>
+
+  <script src="guagame.js"></script>
+  <script src="paddle.js"></script>
+  <script src="block.js"></script>
+  <script src="ball.js"></script>
+  <script src="level.js"></script>
+
+</head>
+<body>
+  <canvas id="id-canvas" width="400" height="300"></canvas>
+
+
+<script>
+  var log = console.log.bind(console);
+  
+  var loadLevel = function(n) {
+    var level = levels[n - 1]
+    var blocks = []
+    for (let i = 0; i < level.length; i++) {
+
+      let p = level[i]
+      let b = Block(p)
+      blocks.push(b)
+    }
+
+    return blocks
+  }
+
+  var realCollide = function(a, b) {
+    let ax = a.x,
+          awx = a.image.width,
+          ay = a.y,
+          ahy = a.image.height;
+
+      let bx = b.x,
+          bwx = b.image.width,
+          by = b.y,
+          bhy = b.image.height;
+
+
+      if (ax >= bx && ax <= bx + bwx && ay >= by && ay <= by + bhy) {
+        return true
+      }else if (ax + awx >= bx && ax + awx <= bx + bwx && ay + ahy >= by && ay + ahy <= by + bhy) {
+        return true
+      }else if (ax >= bx && ax <= bx + bwx && ay + ahy >= by && ay + ahy <= by + bhy) {
+        return true
+      }else if (ax + awx >= bx && ax + awx <= bx + bwx && ay >= by && ay <= by + bhy) {
+        return true
+      }
+
+      return false
+  }
+
+  var imageFromPath = function(path) {
+    var img = new Image()
+    img.src = path
+    return img
+  }
+ 
+  var enableDebugMode = function(enable) {
+
+    if (!enable) {
+      return
+    }
+
+    window.addEventListener('keydown', function(event) {
+      let k = event.key
+
+      if (k == 'p') {
+        paused = !paused
+      }else if ('1234567'.includes(k)) {
+        blocks = loadLevel(Number(k));
+      }
+    })
+  }
+
+  var __main = function() {
+
+    //Debug
+    enableDebugMode(true)
+
+    var game = guaGame(30)
+
+    var paddle = Paddle()
+    var ball = Ball()
+    var blocks = loadLevel(3)
+    var paused = false
+
+    log(blocks)
+
+    game.registerAction('a', function() {
+      paddle.moveLeft()
+    })
+
+    game.registerAction('d', function() {
+      paddle.moveRight()
+    })
+
+    game.registerAction('f', function() {
+      ball.fire()
+    })
+    game.registerAction('t', function() {
+      ball.stopFire()
+    })
+
+    game.update = function() {
+
+      if (paused) {
+        return;
+      }
+
+      ball.move()
+      if (paddle.collide(ball)) {
+        ball.speedY *= -1
+      }
+
+      for(let i = 0; i < blocks.length; i++) {
+        if (blocks[i].alive && blocks[i].collide(ball)) {
+          
+          blocks[i].lifes--
+          log(blocks)
+          log(i, blocks[i].lifes)
+          if (blocks[i].lifes < 1){
+            
+            blocks[i].alive = false
+          }
+
+          ball.speedY *= -1
+        }
+      }
+
+    }
+
+    game.draw = function() {
+
+      game.drawImage(paddle)
+
+      game.drawImage(ball)
+
+      for (let i = 0; i < blocks.length; i++) {
+        if (blocks[i].alive) {
+          game.drawImage(blocks[i])
+        }
+      }
+    }
+
+  }
+
+  __main()
+
+  
+</script>
+
+</body>
+</html>

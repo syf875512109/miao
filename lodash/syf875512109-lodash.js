@@ -102,6 +102,39 @@ var syf875512109 = (function(){
     return result;
   }
 
+  function differenceBy(array, values, action) {
+    action = retAction(action);
+    let value = values.map(it => action(it));
+    let result = [];
+    let items;
+    array.forEach(item => {
+      items = action(item);
+      if (!value.includes(items)) {
+        result.push(item);
+      }
+    });
+    return result;
+  }
+
+  function differenceWith(array, values, action) {
+    let result = [];
+    let flag = 1;
+    array.forEach(it => {
+      flag = 1;
+      for (let item = 0; item < values.length; item++) {
+        if (action(it, values[item])) {
+          flag = 0;
+          break;
+        }
+      };
+      if (flag) {
+        result.push(it);
+      }
+    });
+
+    return result;
+  }
+
   function drop(array, num = 1) {
     let result = array.slice();
     let count = 0;
@@ -292,6 +325,33 @@ var syf875512109 = (function(){
     return result;
   }
 
+  function intersectionWith(...arrays) {
+    let compare = arrays[arrays.length - 1];
+    arrays = arrays.slice(0, arrays.length - 1);
+
+    let result = [];
+    let flag = 1;
+    let arr;
+    arrays[0].forEach(item => {
+      for (let it = 1; it < arrays.length; it++) {
+        flag = 1;
+        arr = arrays[it];
+        for(let index = 0; index < arr.length; index++) {
+          if (compare(item, arr[index])) {
+            result.push(item);
+            flag = 0;
+            break;
+          }
+        }
+
+        if (!flag) {
+          break;
+        }
+      };
+    });
+    return result;
+  }
+
   function join(array, str) {
     let s = '';
     let flag = 1;
@@ -300,7 +360,7 @@ var syf875512109 = (function(){
         s += val;
         flag = 0;
       }else {
-        s += str + val;
+        s = s + str + val;
       }
     }
     return s;
@@ -367,6 +427,24 @@ var syf875512109 = (function(){
     return result;
   }
 
+  function pullAllWith(arrays, values, compare) {
+    let result = [];
+    let flag = 1;
+    arrays.forEach(item => {
+      flag = 1;
+      for (let index = 0; index < values.length; index++) {
+        if (compare(item, values[index])) {
+          flag = 0;
+          break;
+        }
+      }
+      if (flag) {
+        result.push(item);
+      }
+    });
+
+    return result;
+  }
   function pullAt(array, rest) {
     let result = [];
     let flag = 0;
@@ -403,11 +481,157 @@ var syf875512109 = (function(){
     }
     return result;
   }
+
+  function sortedIndex(array, value, start = 0, end = array.length - 1) {   
+    let mid = (start + end) >> 1;
+
+    while(start < end) {
+      if (array[mid] == value) {
+        break;
+      }else if (array[mid] > value) {
+        end = mid - 1;
+      }else {
+        start = mid + 1;
+      }
+      mid = (start + end) >> 1;
+    }
+
+    if (start != end) {
+      return sortedIndex(array, value, start, mid);
+    } else {
+      if (array[end] >= value) {
+        return end;
+      }else {
+        return end + 1;
+      }
+    }
+  }
+
+  function sortedIndexBy(array, value, action) {
+    action = retAction(action);
+    array = array.map(it => action(it));
+
+    return sortedIndex(array, action(value));
+  }
+
+  function sortedIndexOf(array, value, start = 0, end = array.length - 1) {
+    let mid = (start + end) >> 1;
+    while(start < end) {
+      if (array[mid] == value) {
+        break;
+      }else if (array[mid] > value) {
+        end = mid - 1;
+      }else {
+        start = mid + 1;
+      }
+      mid = (start + end) >> 1;
+    }
+
+    if (start == end && array[start] != value) {
+      return -1;
+    }else if (start == end && array[start] == value) {
+      return start;
+    }else {
+      return sortedIndexOf(array, value, start, mid);
+    }
+  }
+
+  function sortedLastIndex(array, value, start = 0, end = array.length - 1) {
+    let mid = (start + end) >> 1;
+
+    while(start < end) {
+      if (array[mid] == value) {
+        break;
+      }else if (array[mid] > value) {
+        end = mid - 1;
+      }else {
+        start = mid +  1;
+      }
+      mid = (start + end) >> 1;
+    }
+
+    if (start != end) {
+      return sortedLastIndex(array, value, mid + 1, end);
+    }else {
+      if (array[end] >= value) {
+        return end;
+      }else {
+        return end + 1;
+      }
+    }
+  }
+
+  function sortedLastIndexBy(array, value, action) {
+    action = retAction(action);
+    array = array.map(it => action(it));
+
+    return sortedLastIndex(array, action(value));
+  }
+
+  function sortedLastIndexOf(array, value, start = 0, end = array.length) {
+    let mid = (start + end) >> 1;
+    while(start < end) {
+      if (array[mid] == value) {
+        break;
+      }else if (array[mid] > value) {
+        end = mid - 1;
+      }else {
+        start = mid + 1;
+      }
+      mid = (start + end) >> 1;
+    }
+
+    if (start == end && array[start - 1] != value) {
+      return -1;
+    }else if (start == end && array[start - 1] == value) {
+      return start - 1;
+    }else {
+      return sortedLastIndexOf(array, value, mid + 1, end);
+    }
+  }
+  function isEqual(value, other) {
+    if (value === other) {
+      return true;
+    }else if (value != value && other != other) {
+      return true;
+    }else if (value === value && other !== other || value !== value && other === other) {
+      return false;
+    }else if (Array.isArray(value) && !Array.isArray(other) || !Array.isArray(value) && Array.isArray(other)) {
+      return false;
+    }else if (Array.isArray(value) && Array.isArray(other)) {
+      if (value.length != other.length) {
+        return false;
+      }
+      for (let i = 0; i < value.length; i++) {
+        if (!isEqual(value[i], other[i])) {
+          return false;
+        }
+      }
+      return true;
+    }else if (typeof value === 'object' && typeof other === 'object') {
+      for (let index in value) {
+        if (!isEqual(value[index], other[index])) {
+          return false;
+        }
+      }
+
+      for (let index in other) {
+        if (!isEqual(other[index], value[index])) {
+          return false;
+        }
+      }
+      return true;
+    }else {
+      return false;
+    }
+  }
   return {
     compact: compact,
     chunk: chunk,
     concat: concat,
     difference: difference,
+    differenceBy: differenceBy,
+    differenceWith: differenceWith,
     drop: drop,
     dropRight: dropRight,
     dropRightWhile: dropRightWhile,
@@ -424,6 +648,7 @@ var syf875512109 = (function(){
     initial: initial,
     intersection: intersection,
     intersectionBy: intersectionBy,
+    intersectionWith: intersectionWith,
     join: join,
     last: last,
     lastIndexOf: lastIndexOf,
@@ -431,9 +656,17 @@ var syf875512109 = (function(){
     pull: pull,
     pullAll: pullAll,
     pullAllBy: pullAllBy,
+    pullAllWith: pullAllWith,
     pullAt: pullAt,
     remove: remove,
     reverse: reverse,
     slice: slice,
+    sortedIndex: sortedIndex,
+    sortedIndexBy: sortedIndexBy,
+    sortedIndexOf: sortedIndexOf,
+    sortedLastIndex: sortedLastIndex,
+    sortedLastIndexBy: sortedLastIndexBy,
+    sortedLastIndexOf: sortedLastIndexOf,
+    isEqual: isEqual,
   }
 })()
